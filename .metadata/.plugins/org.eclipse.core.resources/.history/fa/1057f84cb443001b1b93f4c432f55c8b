@@ -1,0 +1,4 @@
+spring.datasource.url = jdbc:oracle:thin:@192.168.0.185:1521/XEPDB1
+spring.datasource.username=DobrzeSieBawie1
+spring.datasource.passowrd=Password321
+logging.level.root=INFO

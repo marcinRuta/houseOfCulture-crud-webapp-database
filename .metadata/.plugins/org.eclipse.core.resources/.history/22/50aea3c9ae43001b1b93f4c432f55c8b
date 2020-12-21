@@ -1,0 +1,28 @@
+package bdbt_proj;
+
+public class Domy_kultury {
+	
+	/* Fields */
+	private int ID_Domu;
+	private String Nazwa;
+	private String Data_zalozenia;
+	private String Dyrektor;
+	private int ID_Adresu;
+	
+	public Domy_kultury() {
+		
+	}
+	
+	
+	public Domy_kultury(int iD_Domu, String nazwa, String data_zalozenia, String dyrektor, int iD_Adresu) {
+		super();
+		ID_Domu = iD_Domu;
+		Nazwa = nazwa;
+		Data_zalozenia = data_zalozenia;
+		Dyrektor = dyrektor;
+		ID_Adresu = iD_Adresu;
+	}
+	
+	
+	
+}
