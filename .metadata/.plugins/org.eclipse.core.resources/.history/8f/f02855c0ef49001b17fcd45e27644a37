@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nowy Dom Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Wprowadz nowy Dom Kultury</h1>
+
+		<form action="#" th:action="@{/save}" th:object="${Domy_kultury}"
+			method="post">
+
+			<!-- Table -->
+			<table border="1" cellpadding="10">
+			
+			<!-- Table first row -->
+			
+			<tr>
+				<td> 
+
+
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>

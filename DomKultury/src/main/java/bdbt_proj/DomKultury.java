@@ -9,7 +9,15 @@ public class DomKultury {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DomKultury.class, args);
-
 	}
 
+	
+	//strona dla administratora i dla pracownika -> password	(widok inny)
+	//zrobiæ pozosta³e encje
+	//html ³adniej
+	//pola puste? -> najwa¿niejsze id!!! -> wyj¹tki //mo¿e checkbox?
+	//pola, w których tylko kilka rzeczy do wybrania jest	//lista do wybory
+	//alert, jak nie wpiszesz wszystkiego to alert "czy jestes pewien, niektóre pola s¹ puste"
+	
+	//https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#creating-a-form
 }

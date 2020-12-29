@@ -16,7 +16,7 @@ class Domy_kulturyDAOTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		DriverManagerDataSource datasource = new DriverManagerDataSource();
-		datasource.setUrl("jdbc:oracle:thin:@192.168.0.185:1521/XEPDB1");
+		datasource.setUrl("jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1");
 		datasource.setUsername("DobrzeSieBawie1");
 		datasource.setPassword("Password321");
 		datasource.setDriverClassName("oracle.jdbc.OracleDriver");
@@ -32,7 +32,8 @@ class Domy_kulturyDAOTest {
 
 	@Test
 	void testSave() {
-		fail("Not yet implemented");
+		Domy_kultury domek = new Domy_kultury(2, "Transatlantycki", "1999-02-12", "Maciek", 1);
+		dao.save(domek);
 	}
 
 	@Test

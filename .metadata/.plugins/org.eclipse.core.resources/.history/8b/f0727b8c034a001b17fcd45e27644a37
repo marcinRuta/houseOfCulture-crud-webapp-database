@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Wprowadz nowego Pracownika</h1>
+
+		<form action="#" th:action="@{/saveP}" th:object="${NowyPracownik}"
+			method="post">
+
+			<!-- Table -->
+			<table border="1" cellpadding="10">
+
+				<!-- Table first row -->
+
+				<tr>
+					<td>Imie Pracownika:</td>
+					<td><input type="text" th:field="*{Imie}"></td>
+				</tr>
+
+				<!-- Table 2nd row -->
+
+				<tr>
+					<td>Nazwisko Pracownika:</td>
+					<td><input type="text" th:field="*{nazwisko}"></td>
+				</tr>
+
+				<!-- Table 3rd row -->
+
+				<tr>
+					<td>Data urodzenia: (format rrrr-mm-dd):</td>
+					<td><input type="text" th:field="*{Data_urodzenia}"></td>
+				</tr>
+
+				<!-- Table 4th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 5th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 6th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 7th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 8th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 9th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 10th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 11th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 12th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+
+				<!-- Button save -->
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+
+
+
+			</table>
+		</form>
+
+		<!-- EXIT -->
+		<a href="/DK">Powrót</a>
+	</div>
+</body>
+</html>

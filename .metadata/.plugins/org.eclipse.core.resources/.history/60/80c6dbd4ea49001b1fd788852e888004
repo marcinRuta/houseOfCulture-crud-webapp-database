@@ -1,0 +1,19 @@
+package bdbt_proj;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DomKultury {
+
+	
+	public static void main(String[] args) {
+		SpringApplication.run(DomKultury.class, args);
+	}
+
+	
+	//strona dla administratora i dla pracownika -> password	(widok inny)
+	//zrobiæ pozosta³e encje
+	//html ³adniej
+	//pola puste? -> najwa¿niejsze id!!! -> wyj¹tki
+}
