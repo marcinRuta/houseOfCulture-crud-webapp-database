@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Lista realizacji wydarzeń wraz z pracownikami w Domu Kultury</h1>
+
+		<!-- Table -->
+		<table border="1" cellpadding="10">
+
+			<!-- Entry to a new page -->
+			<a href="/newOW">Dodaj nowe obsłużenie wydarzenia przez pracownika</a>
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID_Pracownika</th>
+					<th>ID_Realizacji_Wydarzenia</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Obslugiwanie_wydarzenia : ${listObslugiwanie_wydarzenia}">
+					<td th:text="${Obslugiwanie_wydarzenia.ID_Pracownika}">ID_Pracownika</td>
+					<td th:text="${Obslugiwanie_wydarzenia.ID_Realizacji_Wydarzenia}">ID_Realizacji_Wydarzenia</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- EXIT -->
+		<a href="/">Powrót</a>
+
+	</div>
+</body>
+</html>

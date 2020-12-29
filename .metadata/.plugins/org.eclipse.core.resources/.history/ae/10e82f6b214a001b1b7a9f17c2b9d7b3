@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Adresy zapisane w Domu Kultury</h1>
+
+		<!-- Table -->
+		<table border="1" cellpadding="10">
+
+			<!-- Entry to a new page -->
+			<a href="/newA">Dodaj nowe Adresy</a>
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID_Adresu</th>
+					<th>Ulica</th>
+					<th>Nr_Domu</th>
+					<th>Nr_mieszkania</th>
+					<th>ID_Poczty</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Pracownicy : ${listPracownicy}">
+					<td th:text="${Pracownicy.ID_Pracownika}">ID_Pracownika</td>
+					<td th:text="${Pracownicy.Imie}">Imie</td>
+					<td th:text="${Pracownicy.Nazwisko}">Nazwisko</td>
+					<td th:text="${Pracownicy.Data_urodzenia}">Data_urodzenia</td>
+					<td th:text="${Pracownicy.PESEL}">PESEL</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- EXIT -->
+		<a href="/">Powrót</a>
+
+	</div>
+</body>
+</html>

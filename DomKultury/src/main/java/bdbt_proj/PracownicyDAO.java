@@ -33,7 +33,7 @@ public class PracownicyDAO {
 	/* Create */
 	public void save(Pracownicy pracownicy) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-		insertActor.withTableName("Pracownicy").usingColumns("ID_Pracownika","Imie","Nazwisko","Data_urodzenia","PESEL","NR_Telefonu","Email","Plec","Data_Zatrudnienia","Data_Zwolnienia","ID_Domu","ID_Adresu","ID_Stanowiska");
+		insertActor.withTableName("Pracownicy").usingColumns("Imie","Nazwisko","Data_urodzenia","PESEL","NR_Telefonu","Email","Plec","Data_Zatrudnienia","Data_Zwolnienia","ID_Domu","ID_Adresu","ID_Stanowiska");
 		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pracownicy);
 		insertActor.execute(param);
 	}

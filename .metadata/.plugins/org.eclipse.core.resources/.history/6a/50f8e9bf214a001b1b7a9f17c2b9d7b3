@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Wprowadz nowy Adres</h1>
+
+		<form action="#" th:action="@{/saveA}" th:object="${NowyAdres}"
+			method="post">
+
+			<!-- Table -->
+			<table border="1" cellpadding="10">
+
+				<!-- Table first row -->
+
+				<tr>
+					<td>ID Adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 2nd row -->
+
+				<tr>
+					<td>Ulica:</td>
+					<td><input type="text" th:field="*{Ulica}"></td>
+				</tr>
+
+				<!-- Table 3rd row -->
+
+				<tr>
+					<td>Imie i nazwisko dyrektora:</td>
+					<td><input type="text" th:field="*{Dyrektor}"></td>
+				</tr>
+
+				<!-- Table 4th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+				
+				<!-- Button save -->
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+
+
+
+			</table>
+		</form>
+						
+				<!-- EXIT -->
+				<a href="/A">Powrót</a>
+	</div>
+</body>
+</html>
