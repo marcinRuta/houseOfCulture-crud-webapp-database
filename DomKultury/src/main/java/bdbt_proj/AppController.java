@@ -22,6 +22,16 @@ public class AppController {
 	private WynagrodzeniaDAO daoWynagrodzenia;
 	@Autowired
 	private Obslugiwanie_wydarzeniaDAO daoObslugiwanie_wydarzenia;
+	@Autowired
+	private WydarzeniaDAO daoWydarzenia;
+	@Autowired
+	private Realizacje_wydarzenDAO daoRealizacje_wydarzen;
+	@Autowired
+	private UczestnicyDAO daoUczestnicy;
+	@Autowired
+	private Zapisy_na_wydarzenieDAO daoZapisy_na_wydarzenie;
+
+	
 	
 	@RequestMapping("/")
 	public String viewHomePage() {
@@ -141,5 +151,103 @@ public class AppController {
 		
 		daoObslugiwanie_wydarzenia.save(NoweObslugiwanie_wydarzenia);
 		return "redirect:/OW";
+	}
+	
+	/* Wydarzenia */
+	
+	@RequestMapping("/W")
+	public String viewWydarzenia(Model model) {
+		List<Wydarzenia> listWydarzenia = daoWydarzenia.list();
+		model.addAttribute("listWydarzenia", listWydarzenia);
+		return "Wydarzenia";
+	}
+	
+	@RequestMapping("/newW")
+	public String showNewWydarzenia(Model model) {
+		
+		Wydarzenia NoweWydarzenia = new Wydarzenia();
+		model.addAttribute("NoweWydarzenia", NoweWydarzenia);
+		return "new_Wydarzenia";
+	}
+	
+	@RequestMapping(value = "/saveW", method = RequestMethod.POST)
+	public String save(@ModelAttribute("NoweWydarzenia") Wydarzenia NoweWydarzenia) {
+		
+		daoWydarzenia.save(NoweWydarzenia);
+		return "redirect:/W";
+	}
+	
+	
+	
+	/* Realizacja_wydarzen */
+	@RequestMapping("/RW")
+	public String viewRealizacja_wydarzen(Model model) {
+		List<Realizacje_wydarzen> listRealizacje_wydarzen = daoRealizacje_wydarzen.list();
+		model.addAttribute("listRealizacje_wydarzen", listRealizacje_wydarzen);
+		return "realizacje_wydarzen";
+	}
+	
+	@RequestMapping("/newRW")
+	public String showNewRealizacje_wydarzen(Model model) {
+		
+		Realizacje_wydarzen NowaRealizacja_wydarzenia = new Realizacje_wydarzen();
+		model.addAttribute("NowaRelizacja_wydarzenia", NowaRealizacja_wydarzenia);
+		return "new_realizacje_wydarzen";
+	}
+	
+	@RequestMapping(value = "/saveRW", method = RequestMethod.POST)
+	public String save(@ModelAttribute("NowaRealizacja_wydarzenia") Realizacje_wydarzen NowaRealizacja_wydarzen) {
+		
+		daoRealizacje_wydarzen.save(NowaRealizacja_wydarzen);
+		return "redirect:/RW";
+	}
+	
+	
+	/* Uczestnicy */
+	@RequestMapping("/U")
+	public String viewUczestnicy(Model model) {
+		List<Uczestnicy> listUczestnicy = daoUczestnicy.list();
+		model.addAttribute("listUczestnicy", listUczestnicy);
+		return "uczestnicy";
+	}
+	
+	@RequestMapping("/newU")
+	public String showNewUczestnicy(Model model) {
+		
+		Uczestnicy NowyUczestnik = new Uczestnicy();
+		model.addAttribute("NowyUczestnik", NowyUczestnik );
+		return "new_uczestnicy";
+	}
+	
+	@RequestMapping(value = "/saveU", method = RequestMethod.POST)
+	public String save(@ModelAttribute("NowyUczestnik") Uczestnicy NowyUczestnik) {
+		
+		daoUczestnicy.save(NowyUczestnik);
+		return "redirect:/U";
+		
+		
+		
+	}
+	/* Zapisy_na_Wydarzenie */
+	@RequestMapping("/ZNW")
+	public String viewZapisy_na_wydarzenie(Model model) {
+		List<Zapisy_na_wydarzenie> listZapisy_na_wydarzenie = daoZapisy_na_wydarzenie.list();
+		model.addAttribute("listZapisy_na_wydarzenie", listZapisy_na_wydarzenie);
+		return "zapisy_na_wydarzenie";
+	}
+	
+	@RequestMapping("/newZNW")
+	public String showNewZapisy_na_wydarzenie(Model model) {
+		
+		Zapisy_na_wydarzenie NowyZapis_na_wydarzenie = new Zapisy_na_wydarzenie();
+		model.addAttribute("NowyZapis_na_wydarzenie", NowyZapis_na_wydarzenie );
+		return "new_zapisy_na_wydarzenie";
+	}
+	
+	@RequestMapping(value = "/saveZNW", method = RequestMethod.POST)
+	public String save(@ModelAttribute("NowyZapis_na_wydarzenie") Zapisy_na_wydarzenie NowyZapis_na_wydarzenie) {
+		
+		daoZapisy_na_wydarzenie.save(NowyZapis_na_wydarzenie);
+		return "redirect:/ZNW";
 	}
 }
