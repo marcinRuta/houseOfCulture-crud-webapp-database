@@ -1,0 +1,14 @@
+package bdbt_proj;
+
+public class asd {
+
+	private Properties 123;
+	
+	public asd() {
+		
+	}
+	
+	public String dsf() {
+		
+	}
+}

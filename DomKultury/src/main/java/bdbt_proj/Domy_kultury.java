@@ -1,11 +1,13 @@
 package bdbt_proj;
 
+import java.sql.Date;
+
 public class Domy_kultury {
 	
 	/* Fields */
 	private int ID_Domu;
 	private String Nazwa;
-	private String Data_zalozenia;
+	private Date Data_zalozenia;
 	private String Dyrektor;
 	private int ID_Adresu;
 	
@@ -16,7 +18,7 @@ public class Domy_kultury {
 	}
 	
 	/* Constructor with fields */
-	public Domy_kultury(int iD_Domu, String nazwa, String data_zalozenia, String dyrektor, int iD_Adresu) {
+	public Domy_kultury(int iD_Domu, String nazwa, Date data_zalozenia, String dyrektor, int iD_Adresu) {
 		super();
 		this.ID_Domu = iD_Domu;
 		this.Nazwa = nazwa;
@@ -42,11 +44,11 @@ public class Domy_kultury {
 		Nazwa = nazwa;
 	}
 
-	public String getData_zalozenia() {
+	public Date getData_zalozenia() {
 		return Data_zalozenia;
 	}
 
-	public void setData_zalozenia(String data_zalozenia) {
+	public void setData_zalozenia(Date data_zalozenia) {
 		Data_zalozenia = data_zalozenia;
 	}
 

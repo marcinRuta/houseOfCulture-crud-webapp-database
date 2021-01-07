@@ -1,0 +1,26 @@
+DIV.container {
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle }
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Dom Kultury</h1>
+		<h3>Aplikacja do obsługi Bazy Danych</h3>
+		
+		
+
+	</div>
+</body>
+</html>

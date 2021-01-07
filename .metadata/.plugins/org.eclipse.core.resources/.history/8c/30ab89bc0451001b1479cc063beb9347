@@ -1,0 +1,40 @@
+package bdbt_proj;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class asd {
+
+	private Properties kolo;
+	
+	public asd() {
+		
+	}
+	
+	public String dsf() throws IOException {
+		Properties kolo = new Properties();
+		
+		String path = new File("a.propeties").getCanonicalPath();
+		
+		try {
+			kolo.load(new FileInputStream(path));
+			System.out.println("jiiihaaa");
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
+		return "uda³o sie!";
+	}
+	
+	public static void main(String args[]) {
+		asd k = new asd();
+		try{
+			k.dsf();
+		}catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
+	}
+}

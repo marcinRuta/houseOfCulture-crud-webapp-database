@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+<div align="center">
+
+<!-- Page header -->
+<h1>Edytowanie Domu Kultury</h1>
+
+<!-- End line/new line -->
+
+<br/>
+
+<form action="#" th:action:"@{/update}" th:object="${}" method="post">
+
+
+</form>
+
+
+
+
+
+</div>
+
+</body>
+</html>

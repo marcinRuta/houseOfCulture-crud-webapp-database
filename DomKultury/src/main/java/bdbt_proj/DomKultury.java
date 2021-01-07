@@ -11,13 +11,21 @@ public class DomKultury {
 		SpringApplication.run(DomKultury.class, args);
 	}
 
+	//date do date !!!!
+
 	
-	//strona dla administratora i dla pracownika -> password	(widok inny)
+
+	//plik properties/json z has³ami oraz id -> wyswietla potem tylko jego dane (zmodyfikowac sql -> tylko dla niego) lub java
+	//czyli usuwamy dla neigo zapisy na wydarzenie -> tylko html !
+	//zrobic DODATKOW¥ tabele z realizacja wydarzen i jego uczestnikami (michal) - dodatkowa kolumna z href uczestnicy, którzy s¹ przypisani do tego wydarzenia (bez adresu)
+	
 	//zrobiæ pozosta³e encje
 	//html ³adniej
-	//pola puste? -> najwa¿niejsze id!!! -> wyj¹tki //mo¿e checkbox?
-	//pola, w których tylko kilka rzeczy do wybrania jest	//lista do wybory
-	//alert, jak nie wpiszesz wszystkiego to alert "czy jestes pewien, niektóre pola s¹ puste"
+	//pola, w których tylko kilka rzeczy do wybrania jest	//lista do wybory - tam gdzie klucze obce?
+	//alert, jak nie wpiszesz wszystkiego to alert "czy jestes pewien, niektóre pola s¹ puste"!
 	
 	//https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#creating-a-form
+	
+	//error
+	//https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#field-errors
 }

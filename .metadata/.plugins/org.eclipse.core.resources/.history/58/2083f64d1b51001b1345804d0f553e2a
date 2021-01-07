@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Logowanie Pracownika</h1>
+		<br>
+		
+		<form action="#" th:action="@{/logP}" method="post"
+			th:object="${login}">
+			Użytkownik: <input type="text" th:field="*{username}" /> <br />
+			Hasło: <input type="password" th:field="*{password}" /> <br /> <input
+				type="submit" value="Zaloguj się" />
+		</form>
+
+		<!-- EXIT -->
+		<a href="/">Powrót</a>
+</body>
+</html>

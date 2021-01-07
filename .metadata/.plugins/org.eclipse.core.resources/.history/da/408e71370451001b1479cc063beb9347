@@ -1,0 +1,31 @@
+package bdbt_proj;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class asd {
+
+	private Properties 123;
+	
+	public asd() {
+		
+	}
+	
+	public String dsf() {
+		Properties 123 = new Properties();
+		
+		try {
+			123.load(new FileInputStream("./src/main/resources/a.propeties"));
+			System.out.println();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		return "uda³o sie!";
+	}
+	
+	public static void main(String args[]) {
+		asd k = new asd();
+		k.dsf();
+	}
+}

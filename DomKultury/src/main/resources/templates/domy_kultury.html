@@ -17,6 +17,9 @@
 			<!-- Entry to a new page -->
 			<a href="/newDK">Dodaj nowe Domy kultury</a>
 			
+			<!-- Break line -->
+			<br/><br/>
+			
 			<!-- Table header -->
 			<thead>
 				<tr>
@@ -37,12 +40,17 @@
 					<td th:text="${Domy_kultury.Data_zalozenia}">Data_zalozenia</td>
 					<td th:text="${Domy_kultury.Dyrektor}">Dyrektor</td>
 					<td th:text="${Domy_kultury.ID_Adresu}">id_adresu</td>
+					
+					<td><a th:href="@{'/editDK/' + ${Domy_kultury.ID_Domu}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/deleteDK/' +${Domy_kultury.ID_Domu}}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		
 			<!-- EXIT -->
-			<a href="/">Powrót</a>
+			<a href="/tables">Powrót</a>
 
 	</div>
 </body>

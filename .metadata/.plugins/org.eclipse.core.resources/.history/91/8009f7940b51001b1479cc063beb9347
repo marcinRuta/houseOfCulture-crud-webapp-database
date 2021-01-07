@@ -1,0 +1,63 @@
+package bdbt_proj;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+public class LoginDao {
+	
+	public Properties propA;
+	private Properties propP;
+	
+	public LoginDao() {
+		super();
+	}
+	
+	public void load() {
+		Properties propA = new Properties();
+		Properties propP = new Properties();
+		
+		try {
+			String pathA = new File("src/main/resources/a.properties").getCanonicalPath();
+			String pathP = new File("src/main/resources/p.properties").getCanonicalPath();
+			
+        	InputStream inputA = new FileInputStream(pathA);
+        	InputStream inputP = new FileInputStream(pathP);
+			
+			propA.load(inputA);
+			propP.load(inputP);
+			
+	        //propA.forEach((k, v) -> System.out.println(k + ":" + v));
+			
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
+	
+	public boolean porwnajA(Login login) {
+		try {
+			System.out.println(login.getLogin());
+			System.out.println(propA.getProperty("admin"));
+			if(propA.getProperty(login.getLogin()).equals(login.getPassword())) {
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		}catch (NullPointerException e){
+			return false;
+		}
+		
+	}
+	
+	public boolean porwnajP(Login login) {
+		if(propP.getProperty(login.getLogin())!=null && propP.getProperty(login.getLogin()).equals(login.getPassword())) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+}
