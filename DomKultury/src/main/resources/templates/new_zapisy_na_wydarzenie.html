@@ -9,7 +9,7 @@
 
 	<div align="center">
 		<!--  Page header  -->
-		<h1>Wprowadz nowe obsłużenie wydarzenia przez pracownika</h1>
+		<h1>Wprowadz nowy zapis</h1>
 
 		<form action="#" th:action="@{/saveZNW}" th:object="${NowyZapis_na_wydarzenie}"
 			method="post">
@@ -35,7 +35,7 @@
 
 				<tr>
 					<td>Data zapisu:</td>
-					<td><input type="text" th:field="*{Data_Zapisu}"></td>
+					<td><input type="date" th:field="*{Data_Zapisu}"></td>
 				</tr>
 
 				<!-- Button save -->

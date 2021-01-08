@@ -1,10 +1,12 @@
 package bdbt_proj;
 
+import java.sql.Date;
+
 public class Realizacje_wydarzen {
 	
 	/* Fields */
 	private int ID_Realizacji_Wydarzenia;
-	private String Data_Wydarzenia;
+	private Date Data_Wydarzenia;
 	private float Cena;
 	private int ID_Wydarzenia;
 	private int ID_Sali;
@@ -21,7 +23,7 @@ public class Realizacje_wydarzen {
 
 
 
-	public Realizacje_wydarzen(int iD_Realizacji_Wydarzenia, String data_Wydarzenia, float cena, int iD_Wydarzenia,
+	public Realizacje_wydarzen(int iD_Realizacji_Wydarzenia, Date data_Wydarzenia, float cena, int iD_Wydarzenia,
 			int iD_Sali) {
 		super();
 		ID_Realizacji_Wydarzenia = iD_Realizacji_Wydarzenia;
@@ -51,7 +53,7 @@ public class Realizacje_wydarzen {
 
 
 
-	public String getData_Wydarzenia() {
+	public Date getData_Wydarzenia() {
 		return Data_Wydarzenia;
 	}
 
@@ -59,7 +61,7 @@ public class Realizacje_wydarzen {
 
 
 
-	public void setData_Wydarzenia(String data_Wydarzenia) {
+	public void setData_Wydarzenia(Date data_Wydarzenia) {
 		Data_Wydarzenia = data_Wydarzenia;
 	}
 

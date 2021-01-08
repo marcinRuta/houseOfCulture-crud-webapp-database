@@ -23,6 +23,7 @@
 					<th>ID_Uczestnika</th>
 					<th>ID_Realizacji_Wydarzenia</th>
 					<th>Data_Zapisu</th>
+					<th>Akcja</th>
 				</tr>
 			</thead>
 
@@ -32,6 +33,8 @@
 					<td th:text="${Zapisy_na_wydarzenie.ID_Uczestnika}">ID_Uczestnika</td>
 					<td th:text="${Zapisy_na_wydarzenie.ID_Realizacji_Wydarzenia}">ID_Realizacji_Wydarzenia</td>
 					<td th:text="${Zapisy_na_wydarzenie.Data_Zapisu}">Data_Zapisu</td>
+					<td><a
+						th:href="@{'/deleteZNW/' +${Zapisy_na_wydarzenie.ID_Uczestnika} + '/' + ${Zapisy_na_wydarzenie.ID_Realizacji_Wydarzenia}}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

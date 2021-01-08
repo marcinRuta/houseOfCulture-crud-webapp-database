@@ -25,6 +25,7 @@
 					<th>Cena</th>
 					<th>ID_Wydarzenia</th>
 					<th>ID_Sali</th>
+					<th>Akcje</th>
 				</tr>
 			</thead>
 
@@ -36,6 +37,9 @@
 					<td th:text="${Realizacje_wydarzen.Cena}">Cena</td>
 					<td th:text="${Realizacje_wydarzen.ID_Wydarzenia}">ID_Wydarzenia</td>
 					<td th:text="${Realizacje_wydarzen.ID_Sali}">ID_Sali</td>
+					<td><a th:href="@{'/editRW/' + ${Realizacje_wydarzen.ID_Realizacji_Wydarzenia}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/deleteRW/' +${Realizacje_wydarzen.ID_Realizacji_Wydarzenia}}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

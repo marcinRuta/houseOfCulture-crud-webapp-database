@@ -1,10 +1,12 @@
 package bdbt_proj;
 
+import java.sql.Date;
+
 public class Zapisy_na_wydarzenie {
 	/* Fields */
 	private int ID_Uczestnika;
 	private int ID_Realizacji_Wydarzenia;
-	private String Data_Zapisu;
+	private Date Data_Zapisu;
 	
 	
 	public Zapisy_na_wydarzenie() {
@@ -12,7 +14,7 @@ public class Zapisy_na_wydarzenie {
 	}
 
 
-	public Zapisy_na_wydarzenie(int iD_Uczestnika, int iD_Realizacji_Wydarzenia, String data_Zapisu) {
+	public Zapisy_na_wydarzenie(int iD_Uczestnika, int iD_Realizacji_Wydarzenia, Date data_Zapisu) {
 		super();
 		ID_Uczestnika = iD_Uczestnika;
 		ID_Realizacji_Wydarzenia = iD_Realizacji_Wydarzenia;
@@ -40,12 +42,12 @@ public class Zapisy_na_wydarzenie {
 	}
 
 
-	public String getData_Zapisu() {
+	public Date getData_Zapisu() {
 		return Data_Zapisu;
 	}
 
 
-	public void setData_Zapisu(String data_Zapisu) {
+	public void setData_Zapisu(Date data_Zapisu) {
 		Data_Zapisu = data_Zapisu;
 	}
 

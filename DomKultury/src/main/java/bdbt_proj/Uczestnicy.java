@@ -1,12 +1,14 @@
 package bdbt_proj;
 
+import java.sql.Date;
+
 public class Uczestnicy {
 	/* Fields */
 	private int ID_Uczestnika;
 	private String Imie;
 	private String Nazwisko;
 	private String Plec;
-	private String Data_urodzenia;
+	private Date Data_urodzenia;
 	private String Numer_telefonu;
 	private String Email;
 	private int ID_Adresu;
@@ -17,7 +19,7 @@ public class Uczestnicy {
 	}
 
 
-	public Uczestnicy(int iD_Uczestnika, String imie, String nazwisko, String plec, String data_urodzenia,
+	public Uczestnicy(int iD_Uczestnika, String imie, String nazwisko, String plec, Date data_urodzenia,
 			String nR_Telefonu, String email, int iD_Adresu) {
 		super();
 		ID_Uczestnika = iD_Uczestnika;
@@ -71,12 +73,12 @@ public class Uczestnicy {
 	}
 
 
-	public String getData_urodzenia() {
+	public Date getData_urodzenia() {
 		return Data_urodzenia;
 	}
 
 
-	public void setData_urodzenia(String data_urodzenia) {
+	public void setData_urodzenia(Date data_urodzenia) {
 		Data_urodzenia = data_urodzenia;
 	}
 
