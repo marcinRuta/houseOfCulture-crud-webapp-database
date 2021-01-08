@@ -11,8 +11,10 @@ public class DomKultury {
 		SpringApplication.run(DomKultury.class, args);
 	}
 
-	//date do date !!!!
+	//date do date !!!!  -> probelem w pracownikach edit -> data zwolnienia mo¿e byæ nullem ale jako data nie mo¿e byæ
 
+	////trzeba usun¹æ wynagrodzenie kiedy usuwamy pracownika  -> wszêdzie indziej tez cascade delete !! -> zrobiæ popout zeby powiadomiæ!
+	
 	
 
 	//plik properties/json z has³ami oraz id -> wyswietla potem tylko jego dane (zmodyfikowac sql -> tylko dla niego) lub java

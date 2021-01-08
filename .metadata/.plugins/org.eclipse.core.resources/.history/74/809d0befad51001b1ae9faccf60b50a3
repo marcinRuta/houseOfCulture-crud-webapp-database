@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+
+		<!-- Page header -->
+		<h1>Edytowanie Wynagordzenia</h1>
+
+		<!-- End line/new line -->
+
+		<br/>
+
+		<form action="#" th:action="@{/updateWYN}" th:object="${EditWynagrodzenia}"
+			method="post">
+
+			<!-- Table -->
+			<table border="1" cellpadding="10">
+
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" th:field="*{ID_Domu}"
+						readonly="readonly"></td>
+
+				</tr>
+				<tr>
+					<td>Nazwa Domu Kultury:</td>
+					<td><input type="text" th:field="*{Nazwa}"></td>
+
+				</tr>
+				<tr>
+					<td>Data założenia (format rrrr-mm-dd):</td>
+					<td><input type="date" th:field="*{Data_zalozenia}"></td>
+
+				</tr>
+				<tr>
+					<td>Imie i nazwisko Dyrektora:</td>
+					<td><input type="text" th:field="*{Dyrektor}"></td>
+
+				</tr>
+				<tr>
+					<td>ID Adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+
+				</tr>
+				
+				<!--  Button for save -->
+				<tr>
+				<td colspan="2"><button type="submit">Save</button>
+				</td>
+				</tr>
+
+			</table>
+		</form>
+
+				<!-- EXIT -->
+				<a href="/DK">Powrót</a>
+	</div>
+
+</body>
+</html>

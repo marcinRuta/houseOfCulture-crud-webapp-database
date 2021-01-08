@@ -114,7 +114,7 @@ public class AppController {
 	}
 
 	@RequestMapping("/editDK/{ID_Domu}")
-	public ModelAndView showEditForm(@PathVariable(name = "ID_Domu") int id) {
+	public ModelAndView showEditFormDomy(@PathVariable(name = "ID_Domu") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_domy");
 		Domy_kultury EditDomy = daoDomyKultury.get(id);
 		mav.addObject("EditDomy", EditDomy);
@@ -123,14 +123,14 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateDK", method = RequestMethod.POST)
-	public String update(@ModelAttribute("EditDomy") Domy_kultury domy_kultury) {
+	public String updateDomy(@ModelAttribute("EditDomy") Domy_kultury domy_kultury) {
 		daoDomyKultury.update(domy_kultury);
 
 		return "redirect:/DK";
 	}
 
 	@RequestMapping("deleteDK/{ID_Domu}")
-	public String delete(@PathVariable(name = "ID_Domu") int id) {
+	public String deleteDomy(@PathVariable(name = "ID_Domu") int id) {
 		daoDomyKultury.delete(id);
 
 		return "redirect:/DK";
@@ -158,6 +158,33 @@ public class AppController {
 		daoPracownicy.save(NowyPracownik);
 		return "redirect:/P";
 	}
+	
+	@RequestMapping("/editP/{ID_Pracownika}")
+	public ModelAndView showEditFormPracownicy(@PathVariable(name = "ID_Pracownika") int id) {
+		ModelAndView mav = new ModelAndView("edit_form_pracownicy");
+		Pracownicy EditPracownicy = daoPracownicy.get(id);
+		mav.addObject("EditPracownicy", EditPracownicy);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/updateP", method = RequestMethod.POST)
+	public String updatePracownicy(@ModelAttribute("EditPracownicy") Pracownicy pracownicy) {
+		daoPracownicy.update(pracownicy);
+
+		return "redirect:/P";
+	}
+
+	@RequestMapping("deleteP/{ID_Pracownika}")
+	public String deletePracownicy(@PathVariable(name = "ID_Pracownika") int id) {
+		daoPracownicy.delete(id);
+
+		return "redirect:/P";
+	}
+	
+	
+	
+
 
 	/* Adresy */
 	@RequestMapping("/A")
@@ -181,6 +208,32 @@ public class AppController {
 		daoAdresy.save(NowyAdres);
 		return "redirect:/A";
 	}
+	
+	@RequestMapping("/editA/{ID_Adresu}")
+	public ModelAndView showEditFormAdresy(@PathVariable(name = "ID_Adresu") int id) {
+		ModelAndView mav = new ModelAndView("edit_form_adresy");
+		Adresy EditAdresy = daoAdresy.get(id);
+		mav.addObject("EditAdresy", EditAdresy);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/updateA", method = RequestMethod.POST)
+	public String updateAdresy(@ModelAttribute("EditAdresy") Adresy adresy) {
+		daoAdresy.update(adresy);
+
+		return "redirect:/A";
+	}
+
+	@RequestMapping("deleteA/{ID_Adresu}")
+	public String deleteAdresy(@PathVariable(name = "ID_Adresu") int id) {
+		daoAdresy.delete(id);
+
+		return "redirect:/A";
+	}
+	
+	
+	
 
 	/* Wynagrodzenia */
 	@RequestMapping("/WYN")
@@ -204,8 +257,34 @@ public class AppController {
 		daoWynagrodzenia.save(NoweWynagrodzenie);
 		return "redirect:/WYN";
 	}
+	
+	@RequestMapping("/editWYN/{ID_Wynagrodzenia}")
+	public ModelAndView showEditFormWynagrodzenia(@PathVariable(name = "ID_Wynagrodzenia") int id) {
+		ModelAndView mav = new ModelAndView("edit_form_wynagrodzenia");
+		Wynagrodzenia EditWynagrodzenia = daoWynagrodzenia.get(id);
+		mav.addObject("EditWynagrodzenia", EditWynagrodzenia);
 
-	/* Obslugiwanie_wydarzenia */
+		return mav;
+	}
+
+	@RequestMapping(value = "/updateWYN", method = RequestMethod.POST)
+	public String updateWynagrodzenia(@ModelAttribute("EditWynagrodzenia") Wynagrodzenia wynagrodzenia) {
+		daoWynagrodzenia.update(wynagrodzenia);
+
+		return "redirect:/WYN";
+	}
+
+	@RequestMapping("deleteWYN/{ID_Wynagrodzenia}")
+	public String deleteWynagrodzenia(@PathVariable(name = "ID_Wynagrodzenia") int id) {
+		daoWynagrodzenia.delete(id);
+
+		return "redirect:/WYN";
+	}
+	
+	
+	
+
+	/* Obslugiwanie_wydarzenia - bez edit oraz update*/
 	@RequestMapping("/OW")
 	public String viewObslugiwanie_wydarzenia(Model model) {
 		List<Obslugiwanie_wydarzenia> listObslugiwanie_wydarzenia = daoObslugiwanie_wydarzenia.list();
@@ -229,6 +308,13 @@ public class AppController {
 		return "redirect:/OW";
 	}
 
+	@RequestMapping("deleteOW/{ID_Pracownika}/{id_realizacji_wydarzenia}")
+	public String deleteObslugiWydarzenia(@PathVariable(name = "ID_Pracownika") int id1, @PathVariable(name = "id_realizacji_wydarzenia") int id2) {
+		daoObslugiwanie_wydarzenia.delete(id1, id2);
+
+		return "redirect:/OW";
+	}
+	
 	/* Wydarzenia */
 
 	@RequestMapping("/W")

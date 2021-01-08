@@ -25,6 +25,7 @@
 					<th>Nr_Domu</th>
 					<th>Nr_mieszkania</th>
 					<th>ID_Poczty</th>
+					<th>Akcja</th>
 				</tr>
 			</thead>
 
@@ -36,6 +37,10 @@
 					<td th:text="${Adresy.Nr_Domu}">Nr_Domu</td>
 					<td th:text="${Adresy.Nr_mieszkania}">Nr_mieszkania</td>
 					<td th:text="${Adresy.ID_Poczty}">ID_Poczty</td>
+
+					<td><a th:href="@{'/editA/' + ${Adresy.ID_Adresu}}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a th:href="@{'/deleteA/' +${Adresy.ID_Adresu}}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

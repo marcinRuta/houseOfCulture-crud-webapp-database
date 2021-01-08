@@ -1,18 +1,20 @@
 package bdbt_proj;
 
+import java.sql.Date;
+
 public class Pracownicy {
 	
 	/* Fields */
 	private int ID_Pracownika;
 	private String Imie;
 	private String Nazwisko;
-	private String Data_urodzenia;
+	private Date Data_urodzenia;
 	private String PESEL;
 	private String NR_Telefonu;
 	private String Email;
 	private String Plec;
-	private String Data_Zatrudnienia; 
-	private String Data_Zwolnienia;
+	private Date Data_Zatrudnienia; 
+	private Date Data_Zwolnienia;
 	private int ID_Domu;
 	private int ID_Adresu;
 	private int ID_Stanowiska;
@@ -26,8 +28,8 @@ public class Pracownicy {
 
 
 	/* Constructor with fields*/
-	public Pracownicy(int iD_Pracownika, String imie, String nazwisko, String data_urodzenia, String pESEL,
-			String nR_Telefonu, String email, String plec, String data_Zatrudnienia, String data_Zwolnienia,
+	public Pracownicy(int iD_Pracownika, String imie, String nazwisko, Date data_urodzenia, String pESEL,
+			String nR_Telefonu, String email, String plec, Date data_Zatrudnienia, Date data_Zwolnienia,
 			int iD_Domu, int iD_Adresu, int iD_Stanowiska) {
 		super();
 		this.ID_Pracownika = iD_Pracownika;
@@ -83,13 +85,13 @@ public class Pracownicy {
 
 
 
-	public String getData_urodzenia() {
+	public Date getData_urodzenia() {
 		return Data_urodzenia;
 	}
 
 
 
-	public void setData_urodzenia(String data_urodzenia) {
+	public void setData_urodzenia(Date data_urodzenia) {
 		Data_urodzenia = data_urodzenia;
 	}
 
@@ -143,25 +145,25 @@ public class Pracownicy {
 
 
 
-	public String getData_Zatrudnienia() {
+	public Date getData_Zatrudnienia() {
 		return Data_Zatrudnienia;
 	}
 
 
 
-	public void setData_Zatrudnienia(String data_Zatrudnienia) {
+	public void setData_Zatrudnienia(Date data_Zatrudnienia) {
 		Data_Zatrudnienia = data_Zatrudnienia;
 	}
 
 
 
-	public String getData_Zwolnienia() {
+	public Date getData_Zwolnienia() {
 		return Data_Zwolnienia;
 	}
 
 
 
-	public void setData_Zwolnienia(String data_Zwolnienia) {
+	public void setData_Zwolnienia(Date data_Zwolnienia) {
 		Data_Zwolnienia = data_Zwolnienia;
 	}
 
@@ -201,8 +203,7 @@ public class Pracownicy {
 		ID_Stanowiska = iD_Stanowiska;
 	}
 
-	
-	/* toString() method */
+
 	@Override
 	public String toString() {
 		return "Pracownicy [ID_Pracownika=" + ID_Pracownika + ", Imie=" + Imie + ", Nazwisko=" + Nazwisko
@@ -211,6 +212,8 @@ public class Pracownicy {
 				+ ", Data_Zwolnienia=" + Data_Zwolnienia + ", ID_Domu=" + ID_Domu + ", ID_Adresu=" + ID_Adresu
 				+ ", ID_Stanowiska=" + ID_Stanowiska + "]";
 	}
+
+	
 	
 
 	

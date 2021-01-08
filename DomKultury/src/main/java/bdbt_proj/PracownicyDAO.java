@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -40,16 +41,26 @@ public class PracownicyDAO {
 	
 	/* Read */
 	public Pracownicy get(int id) {
-		return null;
+		Object[] args = { id };
+		String sql = "SELECT * FROM Pracownicy WHERE ID_Pracownika =" + args[0];
+		Pracownicy pracownicy = jdbcTemplate.queryForObject(sql,
+				BeanPropertyRowMapper.newInstance(Pracownicy.class));
+
+		return pracownicy;
 	}
 	
 	/* Update */
 	public void update(Pracownicy pracownicy) {
-		
+		String sql = "UPDATE Pracownicy SET Imie=:Imie, Nazwisko=:Nazwisko, Data_urodzenia=:Data_urodzenia, PESEL=:PESEL, NR_Telefonu=:NR_Telefonu, Email=:Email, Plec=:Plec, Data_Zatrudnienia=:Data_Zatrudnienia, Data_Zwolnienia=:Data_Zwolnienia, ID_Domu=:ID_Domu, ID_Adresu=:ID_Adresu, ID_Stanowiska=:ID_Stanowiska WHERE ID_Pracownika=:ID_Pracownika";
+		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pracownicy);
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+		//data jako null
+		template.update(sql, param);
 	}
 	
 	/* Delete */
 	public void delete(int id) {
-		
+		String sql = "DELETE FROM Pracownicy WHERE ID_Pracownika = ?"; //trzeba usun¹æ wynagrodzenie!
+		jdbcTemplate.update(sql,id);
 	}
 }

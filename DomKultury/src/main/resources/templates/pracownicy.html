@@ -20,19 +20,20 @@
 			<!-- Table header -->
 			<thead>
 				<tr>
-					<th>ID_Pracownika</th>
-					<th>Imie</th>
+					<th>ID</th>
+					<th>Imię</th>
 					<th>Nazwisko</th>
-					<th>Data_urodzenia</th>
+					<th>Data urodzenia</th>
 					<th>PESEL</th>
-					<th>NR_Telefonu</th>
+					<th>Nr Telefonu</th>
 					<th>Email</th>
-					<th>Plec</th>
-					<th>Data_Zatrudnienia</th>
-					<th>Data_Zwolnienia</th>
-					<th>ID_Domu</th>
-					<th>ID_Adresu</th>
-					<th>ID_Stanowiska</th>
+					<th>Płeć</th>
+					<th>Data Zatrudnienia</th>
+					<th>Data Zwolnienia</th>
+					<th>ID Domu</th>
+					<th>ID Adresu</th>
+					<th>ID Stanowiska</th>
+					<th>Akcja</th>
 				</tr>
 			</thead>
 
@@ -53,6 +54,9 @@
 					<td th:text="${Pracownicy.ID_Adresu}">ID_Adresu</td>
 					<td th:text="${Pracownicy.ID_Stanowiska}">ID_Stanowiska</td>
 
+					<td><a th:href="@{'/editP/' + ${Pracownicy.ID_Pracownika}}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a th:href="@{'/deleteP/' +${Pracownicy.ID_Pracownika}}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

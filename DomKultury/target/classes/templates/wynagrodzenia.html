@@ -24,6 +24,7 @@
 					<th>Data_Wyslania_Wynagrodzenia</th>
 					<th>Kwota_Wynagrodzenia</th>
 					<th>ID_Pracownika</th>
+					<th>Akcja</th>
 				</tr>
 			</thead>
 
@@ -34,6 +35,10 @@
 					<td th:text="${Wynagrodzenia.Data_Wyslania_Wynagrodzenia}">Data_Wyslania_Wynagrodzenia</td>
 					<td th:text="${Wynagrodzenia.Kwota_Wynagrodzenia}">Kwota_Wynagrodzenia</td>
 					<td th:text="${Wynagrodzenia.ID_Pracownika}">ID_Pracownika</td>
+
+					<td><a th:href="@{'/editWYN/' + ${Wynagrodzenia.ID_Wynagrodzenia}}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a th:href="@{'/deleteWYN/' +${Wynagrodzenia.ID_Wynagrodzenia}}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

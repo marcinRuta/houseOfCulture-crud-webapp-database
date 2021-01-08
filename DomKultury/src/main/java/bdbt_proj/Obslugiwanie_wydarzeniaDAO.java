@@ -1,6 +1,8 @@
 package bdbt_proj;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -38,19 +40,15 @@ public class Obslugiwanie_wydarzeniaDAO {
 		insertActor.execute(param);
 	}
 	
-	/* Read */
-	public Obslugiwanie_wydarzenia get(int id) {
-		return null;
-	}
-	
-	/* Update */
-	public void update(Obslugiwanie_wydarzenia obslugiwanie_wydarzenia) {
-		
-	}
-	
 	/* Delete */
-	public void delete(int id) {
+	public void delete(int id1, int id2) {
+		String sql = "DELETE FROM Obslugiwanie_wydarzenia WHERE ID_Pracownika=:id1 and id_realizacji_wydarzenia=:id2";
 		
+		Map<String, Object> parameters = new HashMap<String, Object>();  //b³¹d w object, z³e wartoœci kolumn?
+        parameters.put("id1", id1);
+        parameters.put("id2", id2);
+		
+		jdbcTemplate.update(sql,parameters);
 	}
 
 }

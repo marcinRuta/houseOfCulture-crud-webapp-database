@@ -1,10 +1,12 @@
 package bdbt_proj;
 
+import java.sql.Date;
+
 public class Wynagrodzenia {
 	
 	/* Fields */
 	private int ID_Wynagrodzenia;
-	private String Data_Wyslania_Wynagrodzenia;
+	private Date Data_Wyslania_Wynagrodzenia;
 	private float Kwota_Wynagrodzenia;
 	private int ID_Pracownika;
 	
@@ -15,7 +17,7 @@ public class Wynagrodzenia {
 	}
 
 	/* Constructor with fields*/
-	public Wynagrodzenia(int iD_Wynagrodzenia, String data_Wyslania_Wynagrodzenia, float kwota_Wynagrodzenia,
+	public Wynagrodzenia(int iD_Wynagrodzenia, Date data_Wyslania_Wynagrodzenia, float kwota_Wynagrodzenia,
 			int iD_Pracownika) {
 		super();
 		this.ID_Wynagrodzenia = iD_Wynagrodzenia;
@@ -33,11 +35,11 @@ public class Wynagrodzenia {
 		ID_Wynagrodzenia = iD_Wynagrodzenia;
 	}
 
-	public String getData_Wyslania_Wynagrodzenia() {
+	public Date getData_Wyslania_Wynagrodzenia() {
 		return Data_Wyslania_Wynagrodzenia;
 	}
 
-	public void setData_Wyslania_Wynagrodzenia(String data_Wyslania_Wynagrodzenia) {
+	public void setData_Wyslania_Wynagrodzenia(Date data_Wyslania_Wynagrodzenia) {
 		Data_Wyslania_Wynagrodzenia = data_Wyslania_Wynagrodzenia;
 	}
 
