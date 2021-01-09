@@ -14,13 +14,37 @@
 		<h1>Logowanie Pracownika</h1>
 		<br>
 
-		<form action="#" th:action="@{/logP}" method="post"
+			<form action="#" th:action="@{/logP}" method="post"
 			th:object="${login}">
-			Użytkownik: <input type="text" th:field="*{login}" /> <br /> Hasło:
-			<input type="password" th:field="*{password}" /> <br /> <input
-				type="submit" value="Zaloguj się" />
-		</form>
 
+			<!-- Table -->
+			<table class="cinereousTable">
+
+				<!-- Table first row -->
+
+				<tr>
+					<td>Użytkownik:</td>
+					<td><input type="text" th:field="*{login}"></td>
+				</tr>
+
+				<!-- Table 2nd row -->
+
+				<tr>
+					<td>Hasło:</td>
+					<td><input type="password" th:field="*{password}"></td>
+				</tr>
+					<!-- Table 3nd row -->
+				
+				<!-- Button save -->
+				<tr>
+					<td colspan="2"><button class="button" type="submit">Zaloguj się</button></td>
+				</tr>
+
+
+
+			</table>
+		</form>
+			<br/>
 		<!-- EXIT -->
 		<a href="/">Powrót</a>
 
