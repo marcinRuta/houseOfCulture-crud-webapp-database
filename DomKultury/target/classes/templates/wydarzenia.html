@@ -16,6 +16,9 @@
 
 			<!-- Entry to a new page -->
 			<a href="/newW">Dodaj nowe Wydarzenie</a>
+			
+			<!-- Break line -->
+			<br/><br/>
 
 			<!-- Table header -->
 			<thead>
@@ -25,6 +28,7 @@
 					<th>Maksymalna_ilosc_uczestnikow</th>
 					<th>Wymagana_zgoda_rodzica</th>
 					<th>ID_Domu</th>
+					<th>Akcja</th>
 				</tr>
 			</thead>
 
@@ -36,6 +40,10 @@
 					<td th:text="${Wydarzenia.Maksymalna_Ilosc_Uczestnikow}">Maksymalna_Ilosc_Uczestnikow</td>
 					<td th:text="${Wydarzenia.Wymagana_Zgoda_Rodzica}">Wymagana_Zgoda_Rodzica</td>
 					<td th:text="${Wydarzenia.ID_Domu}">ID_Domu;</td>
+					<td><a th:href="@{'/editW/' + ${Wydarzenia.ID_Wydarzenia}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/deleteW/' +${Wydarzenia.ID_Wydarzenia}}">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

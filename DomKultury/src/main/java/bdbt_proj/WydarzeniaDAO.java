@@ -31,6 +31,20 @@ public class WydarzeniaDAO {
 		return listWydarzenia;
 	}
 	
+	/* List for pracownik view*/
+	public List<Wydarzenia> plist(String cos){
+		Object[] args = { cos };
+		
+		String sql = "SELECT ID_Wydarzenia, Nazwa_Wydarzenia, Maksymalna_Ilosc_Uczestnikow, Wymagana_Zgoda_Rodzica, Wydarzenia.ID_Domu from Wydarzenia\r\n" + 
+				"JOIN Domy_kultury ON Wydarzenia.ID_Domu = Domy_kultury.ID_Domu\r\n" + 
+				"JOIN Pracownicy ON Domy_kultury.ID_Domu = Pracownicy.ID_Domu\r\n" + 
+				"WHERE pracownicy.id_pracownika =" + args[0];
+		
+		List<Wydarzenia> plistWydarzenia = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Wydarzenia.class));
+		return plistWydarzenia;
+	}
+	
 	/* Create */
 	public void save(Wydarzenia wydarzenia) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);

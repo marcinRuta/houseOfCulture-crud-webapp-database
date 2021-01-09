@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Tabele bazy danych - Dom Kultury</h1>
+
+		<!-- Table -->
+		<table border="1" cellpadding="10">
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>Tabela</th>
+					<th>Akcja</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr>
+					<td>Domy Kultury</td>
+					<td><a href="/DK">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Adresy</td>
+					<td><a href="/A">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Pracownicy</td>
+					<td><a href="/P">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Wynagrodzenia</td>
+					<td><a href="/WYN">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Obslugiwanie_wydarzenia</td>
+					<td><a href="/OW">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Wydarzenia</td>
+					<td><a href="/W">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Realizacje_wydarzen</td>
+					<td><a href="/RW">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Uczestnicy</td>
+					<td><a href="/U">VIEW</a></td>
+				</tr>
+				<tr>
+					<td>Zapisy_na_wydarzenie</td>
+					<td><a href="/ZNW">VIEW</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- EXIT -->
+		<a href="/">Wyloguj</a>
+
+	</div>
+</body>
+</html>

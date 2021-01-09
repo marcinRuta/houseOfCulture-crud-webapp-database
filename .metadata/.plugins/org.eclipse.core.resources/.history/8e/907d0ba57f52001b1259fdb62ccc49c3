@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Uczestnicy Domu Kultury</h1>
+
+		<!-- Table -->
+		<table border="1" cellpadding="10">
+
+			<!-- Entry to a new page -->
+			<a href="/newU">Dodaj nowych Uczestników</a>
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID_Uczestnika</th>
+					<th>Imie</th>
+					<th>Nazwisko</th>
+					<th>Plec</th>
+					<th>Data_urodzenia</th>
+					<th>Numer_Telefonu</th>
+					<th>Email</th>
+					
+					<th>ID_Adresu</th>
+
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Uczestnicy : ${plistUczestnicy}">
+					<td th:text="${Uczestnicy.ID_Uczestnika}">ID_Uczestnika</td>
+					<td th:text="${Uczestnicy.Imie}">Imie</td>
+					<td th:text="${Uczestnicy.Nazwisko}">Nazwisko</td>
+					<td th:text="${Uczestnicy.Plec}">Plec</td>
+					<td th:text="${Uczestnicy.Data_urodzenia}">Data_urodzenia</td>
+					<td th:text="${Uczestnicy.Numer_telefonu}">Numer_Telefonu</td>
+					<td th:text="${Uczestnicy.Email}">Email</td>
+					
+					<td th:text="${Uczestnicy.ID_Adresu}">ID_Adresu</td>
+			
+
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- EXIT -->
+		<a href="/v/tables">Powrót</a>
+
+	</div>
+</body>
+</html>

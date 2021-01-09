@@ -31,6 +31,17 @@ public class PracownicyDAO {
 		return listPracownicy;
 	}
 	
+	/* List for pracownicy view*/
+	public List<Pracownicy> plist(String cos){
+		Object[] args = { cos };
+		
+		String sql = "SELECT * from Pracownicy WHERE ID_Pracownika=" + args[0] ;
+		
+		List<Pracownicy> plistPracownicy = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Pracownicy.class));
+		return plistPracownicy;
+	}
+	
 	/* Create */
 	public void save(Pracownicy pracownicy) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);

@@ -32,8 +32,7 @@ class Domy_kulturyDAOTest {
 
 	@Test
 	void testSave() {
-		Domy_kultury domek = new Domy_kultury(2, "Transatlantycki", "1999-02-12", "Maciek", 1);
-		dao.save(domek);
+		
 	}
 
 	@Test
@@ -46,14 +45,7 @@ class Domy_kulturyDAOTest {
 
 	@Test
 	void testUpdate() {
-		Domy_kultury dom = new Domy_kultury();
-		dom.setID_Domu(21);
-		dom.setData_zalozenia("2021-07-01");
-		dom.setDyrektor("Michal");
-		dom.setNazwa("Marcinek");
-		dom.setID_Adresu(2);
-		
-		dao.update(dom);
+
 		
 	}
 

@@ -31,6 +31,34 @@ public class UczestnicyDAO {
 		return listUczestnicy;
 	}
 	
+	/* List for pracownik view*/
+	public List<Uczestnicy> plist(String cos){
+		Object[] args = { cos };
+		String sql = "SELECT Uczestnicy.ID_Uczestnika, Imie, Nazwisko, Plec, Data_urodzenia, Numer_telefonu, Email, Uczestnicy.ID_Adresu from Uczestnicy\r\n" + 
+				"JOIN Zapisy_na_wydarzenie ON uczestnicy.id_uczestnika = zapisy_na_wydarzenie.id_uczestnika\r\n" + 
+				"JOIN Realizacje_wydarzen ON zapisy_na_wydarzenie.id_realizacji_wydarzenia = realizacje_wydarzen.id_realizacji_wydarzenia\r\n" + 
+				"JOIN Obslugiwanie_wydarzenia ON realizacje_wydarzen.id_realizacji_wydarzenia = obslugiwanie_wydarzenia.id_realizacji_wydarzenia\r\n" + 
+				"WHERE Obslugiwanie_wydarzenia.id_pracownika=" +args[0];
+		
+		List<Uczestnicy> plistUczestnicy = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Uczestnicy.class));
+		return plistUczestnicy;
+	}
+	
+	/* List for pracownik view - realizacje with uczestnicy*/
+	public List<Uczestnicy> pulist(String cos, int eiti){
+		Object[] args = { cos, eiti };
+		String sql = "SELECT Uczestnicy.ID_Uczestnika, Imie, Nazwisko, Plec, Data_urodzenia, Numer_telefonu, Email, Uczestnicy.ID_Adresu from Uczestnicy\r\n" + 
+				"JOIN Zapisy_na_wydarzenie ON uczestnicy.id_uczestnika = zapisy_na_wydarzenie.id_uczestnika\r\n" + 
+				"JOIN Realizacje_wydarzen ON zapisy_na_wydarzenie.id_realizacji_wydarzenia = realizacje_wydarzen.id_realizacji_wydarzenia\r\n" + 
+				"JOIN Obslugiwanie_wydarzenia ON realizacje_wydarzen.id_realizacji_wydarzenia = obslugiwanie_wydarzenia.id_realizacji_wydarzenia\r\n" + 
+				"WHERE Obslugiwanie_wydarzenia.id_pracownika=" +args[0] + " and zapisy_na_wydarzenie.id_realizacji_wydarzenia=" + args[1];
+		
+		List<Uczestnicy> pulistUczestnicy = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Uczestnicy.class));
+		return pulistUczestnicy;
+	}
+	
 	/* Create */
 	public void save(Uczestnicy uczestnicy) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);

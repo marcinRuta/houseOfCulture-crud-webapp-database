@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Wynagrodzenia zapisane w Domu Kultury</h1>
+
+		<!-- Table -->
+		<table border="1" cellpadding="10">
+
+			<!-- Entry to a new page -->
+			<a href="/newWYN">Dodaj nowe Wynagrodzenia</a>
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID_Wynagrodzenia</th>
+					<th>Data_Wyslania_Wynagrodzenia</th>
+					<th>Kwota_Wynagrodzenia</th>
+					<th>ID_Pracownika</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Wynagrodzenia : ${plistWynagrodzenia}">
+					<td th:text="${Wynagrodzenia.ID_Wynagrodzenia}">ID_Wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.Data_Wyslania_Wynagrodzenia}">Data_Wyslania_Wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.Kwota_Wynagrodzenia}">Kwota_Wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.ID_Pracownika}">ID_Pracownika</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- EXIT -->
+		<a href="/v/tables">Powrót</a>
+
+	</div>
+</body>
+</html>

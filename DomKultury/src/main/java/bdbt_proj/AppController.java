@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AppController {
 
+	private String wybuchy = "1";
 	@Autowired
 	private Domy_kulturyDAO daoDomyKultury;
 	@Autowired
@@ -53,7 +54,8 @@ public class AppController {
 		LoginDao daoLogin = new LoginDao();
 		
 		if(daoLogin.porwnajP(login)) {
-			return "redirect:/tables";
+			wybuchy = login.getLogin();
+			return "redirect:/v/tables";
 		}else {
 			return "redirect:/logErr";
 		}
@@ -89,6 +91,11 @@ public class AppController {
 	public String viewTablesPage() {
 		return "tables";
 	}
+	
+	@RequestMapping("/v/tables")
+	public String viewPTablesPage() {
+		return "ptables";
+	}
 
 	/* Dom kultury */
 	@RequestMapping("/DK")
@@ -96,6 +103,13 @@ public class AppController {
 		List<Domy_kultury> listDomy = daoDomyKultury.list();
 		model.addAttribute("listDomy", listDomy);
 		return "domy_kultury";
+	}
+	
+	@RequestMapping("/v/DK")
+	public String viewPDomyKultury(Model model) {
+		List<Domy_kultury> plistDomy = daoDomyKultury.plist(wybuchy);
+		model.addAttribute("plistDomy", plistDomy);
+		return "pdomy_kultury";
 	}
 
 	@RequestMapping("/newDK")
@@ -142,6 +156,13 @@ public class AppController {
 		List<Pracownicy> listPracownicy = daoPracownicy.list();
 		model.addAttribute("listPracownicy", listPracownicy);
 		return "pracownicy";
+	}
+	
+	@RequestMapping("/v/P")
+	public String viewPPracownicy(Model model) {
+		List<Pracownicy> plistPracownicy = daoPracownicy.plist(wybuchy);
+		model.addAttribute("plistPracownicy", plistPracownicy);
+		return "ppracownicy";
 	}
 
 	@RequestMapping("/newP")
@@ -191,7 +212,14 @@ public class AppController {
 		model.addAttribute("listAdresy", listAdresy);
 		return "adresy";
 	}
-
+	
+	@RequestMapping("/v/A")
+	public String viewPAdresy(Model model) {
+		List<Adresy> plistAdresy = daoAdresy.plist(wybuchy);
+		model.addAttribute("plistAdresy", plistAdresy);
+		return "padresy";
+	}
+	
 	@RequestMapping("/newA")
 	public String showNewAdresy(Model model) {
 
@@ -237,6 +265,13 @@ public class AppController {
 		List<Wynagrodzenia> listWynagrodzenia = daoWynagrodzenia.list();
 		model.addAttribute("listWynagrodzenia", listWynagrodzenia);
 		return "wynagrodzenia";
+	}
+	
+	@RequestMapping("/v/WYN")
+	public String viewPWynagrodzenia(Model model) {
+		List<Wynagrodzenia> plistWynagrodzenia = daoWynagrodzenia.plist(wybuchy);
+		model.addAttribute("plistWynagrodzenia", plistWynagrodzenia);
+		return "pwynagrodzenia";
 	}
 
 	@RequestMapping("/newWYN")
@@ -285,6 +320,13 @@ public class AppController {
 		model.addAttribute("listObslugiwanie_wydarzenia", listObslugiwanie_wydarzenia);
 		return "Obslugiwanie_wydarzenia";
 	}
+	
+	@RequestMapping("/v/OW")
+	public String viewPObslugiwanie_wydarzenia(Model model) {
+		List<Obslugiwanie_wydarzenia> plistObslugiwanie_wydarzenia = daoObslugiwanie_wydarzenia.plist(wybuchy);
+		model.addAttribute("plistObslugiwanie_wydarzenia", plistObslugiwanie_wydarzenia);
+		return "pObslugiwanie_wydarzenia";
+	}
 
 	@RequestMapping("/newOW")
 	public String showNewObslugiwanie_wydarzenia(Model model) {
@@ -317,6 +359,13 @@ public class AppController {
 		List<Wydarzenia> listWydarzenia = daoWydarzenia.list();
 		model.addAttribute("listWydarzenia", listWydarzenia);
 		return "Wydarzenia";
+	}
+	
+	@RequestMapping("/v/W")
+	public String viewPWydarzenia(Model model) {
+		List<Wydarzenia> plistWydarzenia = daoWydarzenia.plist(wybuchy);
+		model.addAttribute("plistWydarzenia", plistWydarzenia);
+		return "pWydarzenia";
 	}
 
 	@RequestMapping("/newW")
@@ -364,6 +413,22 @@ public class AppController {
 		model.addAttribute("listRealizacje_wydarzen", listRealizacje_wydarzen);
 		return "realizacje_wydarzen";
 	}
+	
+	@RequestMapping("/v/RW")
+	public String viewPRealizacja_wydarzen(Model model) {
+		List<Realizacje_wydarzen> plistRealizacje_wydarzen = daoRealizacje_wydarzen.plist(wybuchy);
+		model.addAttribute("plistRealizacje_wydarzen", plistRealizacje_wydarzen);
+		return "prealizacje_wydarzen";
+	}
+	
+	@RequestMapping("/v/RW/{ID_Realizacji_Wydarzenia}")
+	public String showPRWwithU(Model model, @PathVariable(name = "ID_Realizacji_Wydarzenia") int id) {
+		
+		List<Uczestnicy> pulistUczestnicy = daoUczestnicy.pulist(wybuchy, id);
+		model.addAttribute("pulistUczestnicy", pulistUczestnicy);
+		
+		return "prealizacje_wydarzen_with_u";
+	}
 
 	@RequestMapping("/newRW")
 	public String showNewRealizacje_wydarzen(Model model) {
@@ -409,6 +474,13 @@ public class AppController {
 		List<Uczestnicy> listUczestnicy = daoUczestnicy.list();
 		model.addAttribute("listUczestnicy", listUczestnicy);
 		return "uczestnicy";
+	}
+	
+	@RequestMapping("/v/U")
+	public String viewPUczestnicy(Model model) {
+		List<Uczestnicy> plistUczestnicy = daoUczestnicy.plist(wybuchy);
+		model.addAttribute("plistUczestnicy", plistUczestnicy);
+		return "puczestnicy";
 	}
 
 	@RequestMapping("/newU")

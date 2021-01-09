@@ -31,6 +31,16 @@ public class WynagrodzeniaDAO {
 		return listWynagrodzenia;
 	}
 	
+	/* List */
+	public List<Wynagrodzenia> plist(String cos){
+		Object[] args = { cos };
+		String sql = "SELECT * from Wynagrodzenia WHERE ID_Pracownika=" + args[0];
+		
+		List<Wynagrodzenia> plistWynagrodzenia = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Wynagrodzenia.class));
+		return plistWynagrodzenia;
+	}
+	
 	/* Create */
 	public void save(Wynagrodzenia wynagrodzenia) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);

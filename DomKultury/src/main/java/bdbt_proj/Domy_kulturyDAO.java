@@ -29,6 +29,17 @@ public class Domy_kulturyDAO {
 		List<Domy_kultury> listDomy = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Domy_kultury.class));
 		return listDomy;
 	}
+	
+	/* List for pracownik view */
+	public List<Domy_kultury> plist(String cos) {
+		Object[] args = { cos };
+		String sql = "SELECT Domy_Kultury.ID_Domu, Nazwa, Data_zalozenia, Dyrektor, Domy_Kultury.ID_Adresu from Domy_Kultury\r\n" + 
+				"JOIN Pracownicy ON Domy_kultury.ID_Domu = Pracownicy.ID_Domu\r\n" + 
+				"WHERE pracownicy.id_pracownika =" + args[0];
+
+		List<Domy_kultury> plistDomy = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Domy_kultury.class));
+		return plistDomy;
+	}
 
 	/* Create */
 	public void save(Domy_kultury domy_kultury) {

@@ -10,24 +10,22 @@ public class DomKultury {
 	public static void main(String[] args) {
 		SpringApplication.run(DomKultury.class, args);
 	}
-
+	
+	//Trzeba zrobiæ:
 	//date do date !!!!  -> probelem w pracownikach edit -> data zwolnienia mo¿e byæ nullem ale jako data nie mo¿e byæ
 
 	////trzeba usun¹æ wynagrodzenie kiedy usuwamy pracownika  -> wszêdzie indziej tez cascade delete !! -> zrobiæ popout zeby powiadomiæ!
-	
-	
 
-	//plik properties/json z has³ami oraz id -> wyswietla potem tylko jego dane (zmodyfikowac sql -> tylko dla niego) lub java
-	//czyli usuwamy dla neigo zapisy na wydarzenie -> tylko html !
-	//zrobic DODATKOW¥ tabele z realizacja wydarzen i jego uczestnikami (michal) - dodatkowa kolumna z href uczestnicy, którzy s¹ przypisani do tego wydarzenia (bez adresu)
 	
-	//zrobiæ pozosta³e encje
-	//html ³adniej
-	//pola, w których tylko kilka rzeczy do wybrania jest	//lista do wybory - tam gdzie klucze obce?
-	//alert, jak nie wpiszesz wszystkiego to alert "czy jestes pewien, niektóre pola s¹ puste"!
-	
-	//https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#creating-a-form
+	//html ³adniej - css?
 	
 	//error
 	//https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#field-errors
+	
+	
+	//Jak bêdzie nam sie chcia³o
+	//pola, w których tylko kilka rzeczy do wybrania jest	//lista do wybory - tam gdzie klucze obce?
+	
+	//https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#creating-a-form
+	
 }

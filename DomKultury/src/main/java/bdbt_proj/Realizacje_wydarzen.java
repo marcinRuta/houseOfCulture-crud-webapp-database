@@ -11,17 +11,9 @@ public class Realizacje_wydarzen {
 	private int ID_Wydarzenia;
 	private int ID_Sali;
 	
-	
-	
-	
-	
 	public Realizacje_wydarzen() {
 		
 	}
-
-
-
-
 
 	public Realizacje_wydarzen(int iD_Realizacji_Wydarzenia, Date data_Wydarzenia, float cena, int iD_Wydarzenia,
 			int iD_Sali) {

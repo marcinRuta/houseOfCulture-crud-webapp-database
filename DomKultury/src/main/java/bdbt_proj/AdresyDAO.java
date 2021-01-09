@@ -31,6 +31,19 @@ public class AdresyDAO {
 		return listAdresy;
 	}
 	
+	/* List for pracownik view */
+	public List<Adresy> plist(String cos){
+		Object[] args = { cos };
+		
+		String sql = "SELECT Adresy.ID_Adresu, Ulica, Nr_domu, Nr_mieszkania, ID_poczty from Adresy\r\n" + 
+				"JOIN Pracownicy ON Adresy.ID_Adresu = Pracownicy.ID_Adresu\r\n" + 
+				"WHERE pracownicy.id_pracownika =" + args[0];
+		
+		List<Adresy> plistAdresy = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Adresy.class));
+		return plistAdresy;
+	}
+	
 	/* Create */
 	public void save(Adresy adresy) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);

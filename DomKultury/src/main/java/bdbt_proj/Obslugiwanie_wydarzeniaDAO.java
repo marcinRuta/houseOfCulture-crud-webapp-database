@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,17 @@ public class Obslugiwanie_wydarzeniaDAO {
 		return listObslugiwanie_wydarzenia;
 	}
 	
+	/* List for pracownik view*/
+	public List<Obslugiwanie_wydarzenia> plist(String cos){
+		Object[] args = { cos };
+		
+		String sql = "SELECT * from Obslugiwanie_wydarzenia WHERE ID_Pracownika=" + args[0];
+		
+		List<Obslugiwanie_wydarzenia> plistObslugiwanie_wydarzenia = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Obslugiwanie_wydarzenia.class));
+		return plistObslugiwanie_wydarzenia;
+	}
+	
 	/* Create */
 	public void save(Obslugiwanie_wydarzenia obslugiwanie_wydarzenia) {
 		SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
@@ -48,7 +60,9 @@ public class Obslugiwanie_wydarzeniaDAO {
         parameters.put("id1", id1);
         parameters.put("id2", id2);
 		
-		jdbcTemplate.update(sql,parameters);
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+		template.update(sql, parameters);
 	}
 
 }
