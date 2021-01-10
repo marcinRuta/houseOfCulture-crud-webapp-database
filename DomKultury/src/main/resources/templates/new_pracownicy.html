@@ -2,6 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
+
+<!-- https://www.youtube.com/watch?v=f40ZBLoFkdo&ab_channel=HarithaComputers%26Technology -->
+<script>
+	function Enabledch(ch)
+	{
+		var ddl=document.getElementById("Data");
+		ddl.disabled=ch.checked ? true : false;
+		
+		if(!ddl.disabled)
+		{
+			ddl.focus()
+		}	
+	}
+</script>
+
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
 <title>Aplikacja do obsługi Domu Kultury</title>
@@ -35,7 +51,7 @@
 				<!-- Table 3rd row -->
 
 				<tr>
-					<td>Data urodzenia (format rrrr-mm-dd):</td>
+					<td>Data urodzenia:</td>
 					<td><input type="date" th:field="*{Data_urodzenia}"></td>
 				</tr>
 
@@ -74,15 +90,16 @@
 				<!-- Table 8th row -->
 
 				<tr>
-					<td>Data Zatrudnienia (format rrrr-mm-dd):</td>
+					<td>Data Zatrudnienia:</td>
 					<td><input type="date" th:field="*{Data_Zatrudnienia}"></td>
 				</tr>
 
 				<!-- Table 9th row -->
 
 				<tr>
-					<td>Data Zwolnienia (format rrrr-mm-dd):</td>
-					<td><input type="date" th:field="*{Data_Zwolnienia}"></td>
+					<td>Data Zwolnienia:</td>
+					<td><input id="Data" disabled="disabled" type="date" th:field="*{Data_Zwolnienia}">
+					&nbsp;&nbsp; Brak daty:<input type="checkbox" id="ch" onclick="Enabledch(this)" checked/></td>
 				</tr>
 
 				<!-- Table 10th row -->

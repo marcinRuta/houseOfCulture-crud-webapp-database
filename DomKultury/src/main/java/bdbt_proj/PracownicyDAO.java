@@ -28,6 +28,7 @@ public class PracownicyDAO {
 		
 		List<Pracownicy> listPracownicy = jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(Pracownicy.class));
+		
 		return listPracownicy;
 	}
 	
@@ -65,6 +66,8 @@ public class PracownicyDAO {
 		String sql = "UPDATE Pracownicy SET Imie=:Imie, Nazwisko=:Nazwisko, Data_urodzenia=:Data_urodzenia, PESEL=:PESEL, NR_Telefonu=:NR_Telefonu, Email=:Email, Plec=:Plec, Data_Zatrudnienia=:Data_Zatrudnienia, Data_Zwolnienia=:Data_Zwolnienia, ID_Domu=:ID_Domu, ID_Adresu=:ID_Adresu, ID_Stanowiska=:ID_Stanowiska WHERE ID_Pracownika=:ID_Pracownika";
 		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pracownicy);
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+		
+		//je¿eli "" pole to error -> zmieniamy na jak¹œ datê a potem do innej metody update/save która da datê na null
 		//data jako null
 		template.update(sql, param);
 	}

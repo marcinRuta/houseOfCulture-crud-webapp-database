@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Aplikacja do obsługi Domu Kultury</title>
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
 </head>
 <body>
 
@@ -12,7 +13,7 @@
 		<h1>Uczestnicy Domu Kultury</h1>
 
 		<!-- Table -->
-		<table border="1" cellpadding="10">
+		<table class="cinereousTable">
 
 			<!-- Table header -->
 			<thead>
@@ -47,7 +48,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+		<br/>
 		<!-- EXIT -->
 		<a href="/v/tables">Powrót</a>
 

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+
+		<!-- Page header -->
+		<h1>Edytowanie Pracownika</h1>
+
+		<!-- End line/new line -->
+
+		<br/>
+
+		<form action="#" th:action="@{/updateP}" th:object="${EditPracownicy}"
+			method="post">
+
+			<!-- Table -->
+		<table class="cinereousTable">
+
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" th:field="*{ID_Pracownika}"
+						readonly="readonly"></td>
+
+				</tr>
+				<tr>
+					<td>Imie Pracownika:</td>
+					<td><input type="text" th:field="*{Imie}"></td>
+				</tr>
+
+				<!-- Table 2nd row -->
+
+				<tr>
+					<td>Nazwisko Pracownika:</td>
+					<td><input type="text" th:field="*{Nazwisko}"></td>
+				</tr>
+
+				<!-- Table 3rd row -->
+
+				<tr>
+					<td>Data urodzenia (format rrrr-mm-dd):</td>
+					<td><input type="date" th:field="*{Data_urodzenia}"></td>
+				</tr>
+
+				<!-- Table 4th row -->
+
+				<tr>
+					<td>PESEL:</td>
+					<td><input type="text" th:field="*{PESEL}"></td>
+				</tr>
+
+				<!-- Table 5th row -->
+
+				<tr>
+					<td>NR_Telefonu:</td>
+					<td><input type="text" th:field="*{NR_Telefonu}"></td>
+				</tr>
+
+				<!-- Table 6th row -->
+
+				<tr>
+					<td>Email:</td>
+					<td><input type="text" th:field="*{Email}"></td>
+				</tr>
+
+				<!-- Table 7th row -->
+
+				<tr>
+					<td>Płeć</td>
+					<td><select th:field="*{Plec}">
+							<option value="Mezczyzna">Mezczyzna</option>
+							<option value="Kobieta">Kobieta</option>
+					</select>
+					</td>
+				</tr>
+
+				<!-- Table 8th row -->
+
+				<tr>
+					<td>Data Zatrudnienia (format rrrr-mm-dd):</td>
+					<td><input type="date" th:field="*{Data_Zatrudnienia}"></td>
+				</tr>
+
+				<!-- Table 9th row -->
+
+				<tr>
+					<td>Data Zwolnienia (format rrrr-mm-dd):</td>
+					<td><input id="Data" disabled="disabled" type="date" th:field="*{Data_Zwolnienia}"></td>
+					<td><input type="checkbox" id="ch" onclick="Enabledch(this)"/></td>
+				</tr>
+
+				<!-- Table 10th row -->
+
+				<tr>
+					<td>ID_adresu:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"></td>
+				</tr>
+
+				<!-- Table 11th row -->
+
+				<tr>
+					<td>ID_Domu:</td>
+					<td><input type="text" th:field="*{ID_Domu}"></td>
+				</tr>
+
+				<!-- Table 12th row -->
+
+				<tr>
+					<td>ID_Stanowiska:</td>
+					<td><input type="text" th:field="*{ID_Stanowiska}"></td>
+				</tr>
+				
+				<!--  Button for save -->
+				<tr>
+				<td colspan="2"><button type="submit">Save</button>
+				</td>
+				</tr>
+
+			</table>
+		</form>
+			<br/>
+				<!-- EXIT -->
+				<a href="/P">Powrót</a>
+	</div>
+
+</body>
+</html>

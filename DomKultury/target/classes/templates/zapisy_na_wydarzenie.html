@@ -4,18 +4,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Aplikacja do obsługi Domu Kultury</title>
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
 </head>
 <body>
 
 	<div align="center">
 		<!--  Page header  -->
 		<h1>Lista zapisów na  wydarzenia w Domu Kultury</h1>
-
+		<a href="/newZNW">Dodaj nowy zapis na wydarzenie </a>
+		<br/><br/>
 		<!-- Table -->
-		<table border="1" cellpadding="10">
+		<table class="cinereousTable">
 
 			<!-- Entry to a new page -->
-			<a href="/newZNW">Dodaj nowy zapis na wydarzenie </a>
+			
 
 			<!-- Table header -->
 			<thead>
@@ -38,7 +40,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+		<br/>
 		<!-- EXIT -->
 		<a href="/tables">Powrót</a>
 

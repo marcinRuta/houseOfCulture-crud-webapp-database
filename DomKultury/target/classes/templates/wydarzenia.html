@@ -3,6 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
 <title>Aplikacja do obsługi Domu Kultury</title>
 </head>
 <body>
@@ -10,15 +11,16 @@
 	<div align="center">
 		<!--  Page header  -->
 		<h1>Wydarzenia zapisane w Domu Kultury</h1>
-
+		<a href="/newW">Dodaj nowe Wydarzenie</a>
+			<br/><br/>
 		<!-- Table -->
-		<table border="1" cellpadding="10">
+			<table class="cinereousTable">
 
 			<!-- Entry to a new page -->
-			<a href="/newW">Dodaj nowe Wydarzenie</a>
+			
 			
 			<!-- Break line -->
-			<br/><br/>
+		
 
 			<!-- Table header -->
 			<thead>
@@ -47,7 +49,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+		<br/>
 		<!-- EXIT -->
 		<a href="/tables">Powrót</a>
 
