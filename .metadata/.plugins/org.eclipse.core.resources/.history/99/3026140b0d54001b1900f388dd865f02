@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+<link rel="stylesheet" href="../static/css/tabele.css"
+	th:href="@{/css/tabele.css}">
+</head>
+<body>
+
+
+
+	<div align="center">
+			<!--  Page header  -->
+			<h1>Nie można usunąć, ze względu na powiązania z innymi tabelami.</h1>
+			<h3>Aby usunąć należy najpierw usunąć związki pomiędzy danym rekordem a innymi tabelami.</h3>
+		</form>
+		<br /> <a href="/tables">NIE</a>
+	</div>
+
+
+</body>
+</html>

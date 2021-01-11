@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{tabele.css}" >
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Uczestnicy Domu Kultury</h1>
+		
+	
+	<a href="/newU">Dodaj nowych Uczestników</a>
+		<br/>
+		<br/>	
+			
+		<!-- Table -->
+		<table class="cinereousTable">
+		
+
+			<!-- Entry to a new page -->
+
+		
+
+		
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID Uczestnika</th>
+					<th>Imie</th>
+					<th>Nazwisko</th>
+					<th>Plec</th>
+					<th>Data urodzenia</th>
+					<th>Numer Telefonu</th>
+					<th>Email</th>
+					
+					<th>ID_Adresu</th>
+					<th>Akcja</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Uczestnicy : ${listUczestnicy}">
+					<td th:text="${Uczestnicy.ID_Uczestnika}">ID_Uczestnika</td>
+					<td th:text="${Uczestnicy.Imie}">Imie</td>
+					<td th:text="${Uczestnicy.Nazwisko}">Nazwisko</td>
+					<td th:text="${Uczestnicy.Plec}">Plec</td>
+					<td th:text="${Uczestnicy.Data_urodzenia}">Data_urodzenia</td>
+					<td th:text="${Uczestnicy.Numer_telefonu}">Numer_Telefonu</td>
+					<td th:text="${Uczestnicy.Email}">Email</td>
+					
+					<td th:text="${Uczestnicy.ID_Adresu}">ID_Adresu</td>
+					<td><a th:href="@{'/editU/' + ${Uczestnicy.ID_Uczestnika}}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a th:href="@{'/deleteU/' +${Uczestnicy.ID_Uczestnika}}">Delete</a></td>
+					
+
+				</tr>
+			</tbody>
+		</table>
+			<br/>
+		<!-- EXIT -->
+		<a href="/tables">Powrót</a>
+
+	</div>
+</body>
+</html>

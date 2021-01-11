@@ -67,14 +67,14 @@ public class PracownicyDAO {
 		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(pracownicy);
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		
-		//je¿eli "" pole to error -> zmieniamy na jak¹œ datê a potem do innej metody update/save która da datê na null
-		//data jako null
 		template.update(sql, param);
 	}
 	
 	/* Delete */
 	public void delete(int id) {
-		String sql = "DELETE FROM Pracownicy WHERE ID_Pracownika = ?"; //trzeba usun¹æ wynagrodzenie!
+		String sql = "DELETE FROM Pracownicy WHERE ID_Pracownika = ?"; 
+
 		jdbcTemplate.update(sql,id);
+
 	}
 }

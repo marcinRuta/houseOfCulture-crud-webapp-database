@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Lista realizacji wydarzeń w Domu Kultury</h1>
+		<a href="/newRW">Dodaj nową realizacje wydarzenia </a>
+		<br/>	<br/>
+
+		<!-- Table -->
+		<table class="cinereousTable">
+
+			<!-- Entry to a new page -->
+			
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID_Realizacji_Wydarzenia</th>
+					<th>Data Wydarzenia</th>
+					<th>Cena</th>
+					<th>ID Wydarzenia</th>
+					<th>ID Sali</th>
+					<th>Akcje</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Realizacje_wydarzen : ${listRealizacje_wydarzen}">
+					<td th:text="${Realizacje_wydarzen.ID_Realizacji_Wydarzenia}">ID_Realizacji_Wydarzenia</td>
+					<td th:text="${Realizacje_wydarzen.Data_Wydarzenia}">Data Wydarzenia</td>
+					<td th:text="${Realizacje_wydarzen.Cena}">Cena</td>
+					<td th:text="${Realizacje_wydarzen.ID_Wydarzenia}">ID_Wydarzenia</td>
+					<td th:text="${Realizacje_wydarzen.ID_Sali}">ID_Sali</td>
+					<td><a th:href="@{'/editRW/' + ${Realizacje_wydarzen.ID_Realizacji_Wydarzenia}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/deleteRW/' +${Realizacje_wydarzen.ID_Realizacji_Wydarzenia}}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<br/>
+		<!-- EXIT -->
+		<a href="/tables">Powrót</a>
+
+	</div>
+</body>
+</html>

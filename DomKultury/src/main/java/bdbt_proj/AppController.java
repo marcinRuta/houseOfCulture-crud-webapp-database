@@ -2,9 +2,13 @@ package bdbt_proj;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,43 +45,43 @@ public class AppController {
 
 	@RequestMapping("/LP")
 	public String viewLoginPPage(Model model) {
-		
+
 		Login login = new Login();
 		model.addAttribute(login);
-		
+
 		return "loginP";
 	}
 
 	@RequestMapping(value = "/logP", method = RequestMethod.POST)
 	public String probaLogowaniaP(@ModelAttribute("login") Login login) {
-		
+
 		LoginDao daoLogin = new LoginDao();
-		
-		if(daoLogin.porwnajP(login)) {
+
+		if (daoLogin.porwnajP(login)) {
 			wybuchy = login.getLogin();
 			return "redirect:/v/tables";
-		}else {
+		} else {
 			return "redirect:/logErr";
 		}
 	}
-	
+
 	@RequestMapping("/LA")
 	public String viewLoginAPage(Model model) {
-		
+
 		Login login = new Login();
 		model.addAttribute(login);
-		
+
 		return "LoginA";
 	}
 
 	@RequestMapping(value = "/logA", method = RequestMethod.POST)
 	public String probaLogowaniaA(@ModelAttribute("login") Login login) {
-		
+
 		LoginDao daoLogin = new LoginDao();
-		
-		if(daoLogin.porwnajA(login)) {
+
+		if (daoLogin.porwnajA(login)) {
 			return "redirect:/tables";
-		}else {
+		} else {
 			return "redirect:/logErr";
 		}
 	}
@@ -86,12 +90,22 @@ public class AppController {
 	public String Error() {
 		return "logError";
 	}
-	
+
+	@RequestMapping("/saveErr")
+	public String viewSaveError() {
+		return "cannotSave";
+	}
+
+	@RequestMapping("/delErr")
+	public String viewDeleteError() {
+		return "cannotDelete";
+	}
+
 	@RequestMapping("/tables")
 	public String viewTablesPage() {
 		return "tables";
 	}
-	
+
 	@RequestMapping("/v/tables")
 	public String viewPTablesPage() {
 		return "ptables";
@@ -104,7 +118,7 @@ public class AppController {
 		model.addAttribute("listDomy", listDomy);
 		return "domy_kultury";
 	}
-	
+
 	@RequestMapping("/v/DK")
 	public String viewPDomyKultury(Model model) {
 		List<Domy_kultury> plistDomy = daoDomyKultury.plist(wybuchy);
@@ -121,10 +135,17 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveDK", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NowyDom") Domy_kultury NowyDom) {
+	public String save(@Valid @ModelAttribute("NowyDom") Domy_kultury NowyDom, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoDomyKultury.save(NowyDom);
+			return "redirect:/DK";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoDomyKultury.save(NowyDom);
-		return "redirect:/DK";
 	}
 
 	@RequestMapping("/editDK/{ID_Domu}")
@@ -137,17 +158,30 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateDK", method = RequestMethod.POST)
-	public String updateDomy(@ModelAttribute("EditDomy") Domy_kultury domy_kultury) {
-		daoDomyKultury.update(domy_kultury);
+	public String updateDomy(@Valid @ModelAttribute("EditDomy") Domy_kultury domy_kultury,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoDomyKultury.update(domy_kultury);
 
-		return "redirect:/DK";
+			return "redirect:/DK";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
+
 	}
 
 	@RequestMapping("deleteDK/{ID_Domu}")
 	public String deleteDomy(@PathVariable(name = "ID_Domu") int id) {
-		daoDomyKultury.delete(id);
+		try {
+			daoDomyKultury.delete(id);
 
-		return "redirect:/DK";
+			return "redirect:/DK";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
 
 	/* Pracownicy */
@@ -157,7 +191,7 @@ public class AppController {
 		model.addAttribute("listPracownicy", listPracownicy);
 		return "pracownicy";
 	}
-	
+
 	@RequestMapping("/v/P")
 	public String viewPPracownicy(Model model) {
 		List<Pracownicy> plistPracownicy = daoPracownicy.plist(wybuchy);
@@ -174,12 +208,19 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveP", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NowyPracownik") Pracownicy NowyPracownik) {
+	public String save(@Valid @ModelAttribute("NowyPracownik") Pracownicy NowyPracownik, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoPracownicy.save(NowyPracownik);
+			return "redirect:/P";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoPracownicy.save(NowyPracownik);
-		return "redirect:/P";
 	}
-	
+
 	@RequestMapping("/editP/{ID_Pracownika}")
 	public ModelAndView showEditFormPracownicy(@PathVariable(name = "ID_Pracownika") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_pracownicy");
@@ -190,20 +231,29 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateP", method = RequestMethod.POST)
-	public String updatePracownicy(@ModelAttribute("EditPracownicy") Pracownicy pracownicy) {
-		daoPracownicy.update(pracownicy);
+	public String updatePracownicy(@Valid @ModelAttribute("EditPracownicy") Pracownicy pracownicy,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoPracownicy.update(pracownicy);
+			return "redirect:/P";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		return "redirect:/P";
 	}
 
 	@RequestMapping("deleteP/{ID_Pracownika}")
 	public String deletePracownicy(@PathVariable(name = "ID_Pracownika") int id) {
-		daoPracownicy.delete(id);
-
-		return "redirect:/P";
+		try {
+			daoPracownicy.delete(id);
+			return "redirect:/P";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
-
-	
 
 	/* Adresy */
 	@RequestMapping("/A")
@@ -212,14 +262,14 @@ public class AppController {
 		model.addAttribute("listAdresy", listAdresy);
 		return "adresy";
 	}
-	
+
 	@RequestMapping("/v/A")
 	public String viewPAdresy(Model model) {
 		List<Adresy> plistAdresy = daoAdresy.plist(wybuchy);
 		model.addAttribute("plistAdresy", plistAdresy);
 		return "padresy";
 	}
-	
+
 	@RequestMapping("/newA")
 	public String showNewAdresy(Model model) {
 
@@ -229,12 +279,19 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveA", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NowyAdres") Adresy NowyAdres) {
+	public String save(@Valid @ModelAttribute("NowyAdres") Adresy NowyAdres, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoAdresy.save(NowyAdres);
+			return "redirect:/A";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoAdresy.save(NowyAdres);
-		return "redirect:/A";
 	}
-	
+
 	@RequestMapping("/editA/{ID_Adresu}")
 	public ModelAndView showEditFormAdresy(@PathVariable(name = "ID_Adresu") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_adresy");
@@ -245,19 +302,29 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateA", method = RequestMethod.POST)
-	public String updateAdresy(@ModelAttribute("EditAdresy") Adresy adresy) {
-		daoAdresy.update(adresy);
+	public String updateAdresy(@Valid @ModelAttribute("EditAdresy") Adresy adresy, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoAdresy.update(adresy);
 
-		return "redirect:/A";
+			return "redirect:/A";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
+
 	}
 
 	@RequestMapping("deleteA/{ID_Adresu}")
 	public String deleteAdresy(@PathVariable(name = "ID_Adresu") int id) {
-		daoAdresy.delete(id);
-
-		return "redirect:/A";
+		try {
+			daoAdresy.delete(id);
+			return "redirect:/A";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
-
 
 	/* Wynagrodzenia */
 	@RequestMapping("/WYN")
@@ -266,7 +333,7 @@ public class AppController {
 		model.addAttribute("listWynagrodzenia", listWynagrodzenia);
 		return "wynagrodzenia";
 	}
-	
+
 	@RequestMapping("/v/WYN")
 	public String viewPWynagrodzenia(Model model) {
 		List<Wynagrodzenia> plistWynagrodzenia = daoWynagrodzenia.plist(wybuchy);
@@ -283,35 +350,54 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveWYN", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NoweWynagrodzenie") Wynagrodzenia NoweWynagrodzenie) {
+	public String save(@Valid @ModelAttribute("NoweWynagrodzenie") Wynagrodzenia NoweWynagrodzenie,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoWynagrodzenia.save(NoweWynagrodzenie);
+			return "redirect:/WYN";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoWynagrodzenia.save(NoweWynagrodzenie);
-		return "redirect:/WYN";
 	}
-	
+
 	@RequestMapping("/editWYN/{ID_Wynagrodzenia}")
 	public ModelAndView showEditFormWynagrodzenia(@PathVariable(name = "ID_Wynagrodzenia") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_wynagrodzenia");
 		Wynagrodzenia EditWynagrodzenia = daoWynagrodzenia.get(id);
 		mav.addObject("EditWynagrodzenia", EditWynagrodzenia);
 		return mav;
-		
-	}
-	@RequestMapping(value = "/updateWYN", method = RequestMethod.POST)
-	public String updateWynagrodzenia(@ModelAttribute("EditWynagrodzenia") Wynagrodzenia wynagrodzenia) {
-		daoWynagrodzenia.update(wynagrodzenia);
 
-		return "redirect:/WYN";
+	}
+
+	@RequestMapping(value = "/updateWYN", method = RequestMethod.POST)
+	public String updateWynagrodzenia(@Valid @ModelAttribute("EditWynagrodzenia") Wynagrodzenia wynagrodzenia,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoWynagrodzenia.update(wynagrodzenia);
+
+			return "redirect:/WYN";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
+
 	}
 
 	@RequestMapping("deleteWYN/{ID_Wynagrodzenia}")
 	public String deleteWynagrodzenia(@PathVariable(name = "ID_Wynagrodzenia") int id) {
-		daoWynagrodzenia.delete(id);
-
-		return "redirect:/WYN";
+		try {
+			daoWynagrodzenia.delete(id);
+			return "redirect:/WYN";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
-
-
 
 	/* Obslugiwanie_wydarzenia */
 	@RequestMapping("/OW")
@@ -320,7 +406,7 @@ public class AppController {
 		model.addAttribute("listObslugiwanie_wydarzenia", listObslugiwanie_wydarzenia);
 		return "Obslugiwanie_wydarzenia";
 	}
-	
+
 	@RequestMapping("/v/OW")
 	public String viewPObslugiwanie_wydarzenia(Model model) {
 		List<Obslugiwanie_wydarzenia> plistObslugiwanie_wydarzenia = daoObslugiwanie_wydarzenia.plist(wybuchy);
@@ -338,19 +424,31 @@ public class AppController {
 
 	@RequestMapping(value = "/saveOW", method = RequestMethod.POST)
 	public String save(
-			@ModelAttribute("NoweObslugiwanie_wydarzenia") Obslugiwanie_wydarzenia NoweObslugiwanie_wydarzenia) {
+			@Valid @ModelAttribute("NoweObslugiwanie_wydarzenia") Obslugiwanie_wydarzenia NoweObslugiwanie_wydarzenia,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoObslugiwanie_wydarzenia.save(NoweObslugiwanie_wydarzenia);
+			return "redirect:/OW";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoObslugiwanie_wydarzenia.save(NoweObslugiwanie_wydarzenia);
-		return "redirect:/OW";
 	}
-	
+
 	@RequestMapping("deleteOW/{ID_Pracownika}/{id_realizacji_wydarzenia}")
-	public String deleteObslugiWydarzenia(@PathVariable(name = "ID_Pracownika") int id1, @PathVariable(name = "id_realizacji_wydarzenia") int id2) {
-		daoObslugiwanie_wydarzenia.delete(id1, id2);
+	public String deleteObslugiWydarzenia(@PathVariable(name = "ID_Pracownika") int id1,
+			@PathVariable(name = "id_realizacji_wydarzenia") int id2) {
+		try {
+			daoObslugiwanie_wydarzenia.delete(id1, id2);
 
-		return "redirect:/OW";
+			return "redirect:/OW";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
-
 
 	/* Wydarzenia */
 
@@ -360,7 +458,7 @@ public class AppController {
 		model.addAttribute("listWydarzenia", listWydarzenia);
 		return "Wydarzenia";
 	}
-	
+
 	@RequestMapping("/v/W")
 	public String viewPWydarzenia(Model model) {
 		List<Wydarzenia> plistWydarzenia = daoWydarzenia.plist(wybuchy);
@@ -377,12 +475,20 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveW", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NoweWydarzenia") Wydarzenia NoweWydarzenia) {
+	public String save(@Valid @ModelAttribute("NoweWydarzenia") Wydarzenia NoweWydarzenia,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoWydarzenia.save(NoweWydarzenia);
+			return "redirect:/W";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoWydarzenia.save(NoweWydarzenia);
-		return "redirect:/W";
 	}
-	
+
 	@RequestMapping("/editW/{ID_Wydarzenia}")
 	public ModelAndView showEditFormWydarzenia(@PathVariable(name = "ID_Wydarzenia") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_wydarzenia");
@@ -393,17 +499,30 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateW", method = RequestMethod.POST)
-	public String updateWydarzenia(@ModelAttribute("EditWydarzenia") Wydarzenia wydarzenia) {
-		daoWydarzenia.update(wydarzenia);
+	public String updateWydarzenia(@Valid @ModelAttribute("EditWydarzenia") Wydarzenia wydarzenia,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoWydarzenia.update(wydarzenia);
 
-		return "redirect:/W";
+			return "redirect:/W";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
+
 	}
 
 	@RequestMapping("deleteW/{ID_Wydarzenia}")
 	public String deleteWydarzenia(@PathVariable(name = "ID_Wydarzenia") int id) {
-		daoWydarzenia.delete(id);
+		try {
+			daoWydarzenia.delete(id);
 
-		return "redirect:/W";
+			return "redirect:/W";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
 
 	/* Realizacja_wydarzen */
@@ -413,20 +532,20 @@ public class AppController {
 		model.addAttribute("listRealizacje_wydarzen", listRealizacje_wydarzen);
 		return "realizacje_wydarzen";
 	}
-	
+
 	@RequestMapping("/v/RW")
 	public String viewPRealizacja_wydarzen(Model model) {
 		List<Realizacje_wydarzen> plistRealizacje_wydarzen = daoRealizacje_wydarzen.plist(wybuchy);
 		model.addAttribute("plistRealizacje_wydarzen", plistRealizacje_wydarzen);
 		return "prealizacje_wydarzen";
 	}
-	
+
 	@RequestMapping("/v/RW/{ID_Realizacji_Wydarzenia}")
 	public String showPRWwithU(Model model, @PathVariable(name = "ID_Realizacji_Wydarzenia") int id) {
-		
+
 		List<Uczestnicy> pulistUczestnicy = daoUczestnicy.pulist(wybuchy, id);
 		model.addAttribute("pulistUczestnicy", pulistUczestnicy);
-		
+
 		return "prealizacje_wydarzen_with_u";
 	}
 
@@ -439,12 +558,20 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveRW", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NowaRealizacja_wydarzenia") Realizacje_wydarzen NowaRealizacja_wydarzen) {
+	public String save(@Valid @ModelAttribute("NowaRealizacja_wydarzenia") Realizacje_wydarzen NowaRealizacja_wydarzen,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoRealizacje_wydarzen.save(NowaRealizacja_wydarzen);
+			return "redirect:/RW";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoRealizacje_wydarzen.save(NowaRealizacja_wydarzen);
-		return "redirect:/RW";
 	}
-	
+
 	@RequestMapping("/editRW/{ID_Realizacji_Wydarzenia}")
 	public ModelAndView showEditFormRealizacje(@PathVariable(name = "ID_Realizacji_Wydarzenia") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_realizacje");
@@ -455,17 +582,30 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateRW", method = RequestMethod.POST)
-	public String updateRealizacje(@ModelAttribute("EditRealizacje") Realizacje_wydarzen Realizacje_wydarzen) {
-		daoRealizacje_wydarzen.update(Realizacje_wydarzen);
+	public String updateRealizacje(@Valid @ModelAttribute("EditRealizacje") Realizacje_wydarzen Realizacje_wydarzen,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoRealizacje_wydarzen.update(Realizacje_wydarzen);
 
-		return "redirect:/RW";
+			return "redirect:/RW";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
+
 	}
 
 	@RequestMapping("deleteRW/{ID_Realizacji_Wydarzenia}")
 	public String deleteRealizacje(@PathVariable(name = "ID_Realizacji_Wydarzenia") int id) {
-		daoRealizacje_wydarzen.delete(id);
+		try {
+			daoRealizacje_wydarzen.delete(id);
 
-		return "redirect:/RW";
+			return "redirect:/RW";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
 
 	/* Uczestnicy */
@@ -475,7 +615,7 @@ public class AppController {
 		model.addAttribute("listUczestnicy", listUczestnicy);
 		return "uczestnicy";
 	}
-	
+
 	@RequestMapping("/v/U")
 	public String viewPUczestnicy(Model model) {
 		List<Uczestnicy> plistUczestnicy = daoUczestnicy.plist(wybuchy);
@@ -492,12 +632,19 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveU", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NowyUczestnik") Uczestnicy NowyUczestnik) {
-
-		daoUczestnicy.save(NowyUczestnik);
-		return "redirect:/U";
+	public String save(@Valid @ModelAttribute("NowyUczestnik") Uczestnicy NowyUczestnik, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoUczestnicy.save(NowyUczestnik);
+			return "redirect:/U";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
 	}
+
 	@RequestMapping("/editU/{ID_Uczestnika}")
 	public ModelAndView showEditFormUczestnika(@PathVariable(name = "ID_Uczestnika") int id) {
 		ModelAndView mav = new ModelAndView("edit_form_uczestnicy");
@@ -508,19 +655,32 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/updateU", method = RequestMethod.POST)
-	public String updateUczestnicy(@ModelAttribute("EditUczestnicy") Uczestnicy uczestnicy) {
-		daoUczestnicy.update(uczestnicy);
+	public String updateUczestnicy(@Valid @ModelAttribute("EditUczestnicy") Uczestnicy uczestnicy,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
 
-		return "redirect:/U";
+		try {
+			daoUczestnicy.update(uczestnicy);
+
+			return "redirect:/U";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
+
 	}
 
 	@RequestMapping("deleteU/{ID_Uczestnika}")
 	public String deleteUczestnicy(@PathVariable(name = "ID_Uczestnika") int id) {
-		daoUczestnicy.delete(id);
+		try {
+			daoUczestnicy.delete(id);
 
-		return "redirect:/U";
+			return "redirect:/U";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
-
 
 	/* Zapisy_na_Wydarzenie */
 	@RequestMapping("/ZNW")
@@ -539,16 +699,29 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/saveZNW", method = RequestMethod.POST)
-	public String save(@ModelAttribute("NowyZapis_na_wydarzenie") Zapisy_na_wydarzenie NowyZapis_na_wydarzenie) {
+	public String save(@Valid @ModelAttribute("NowyZapis_na_wydarzenie") Zapisy_na_wydarzenie NowyZapis_na_wydarzenie,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "redirect:/saveErr";
+		}
+		try {
+			daoZapisy_na_wydarzenie.save(NowyZapis_na_wydarzenie);
+			return "redirect:/ZNW";
+		} catch (Exception e) {
+			return "redirect:/saveErr";
+		}
 
-		daoZapisy_na_wydarzenie.save(NowyZapis_na_wydarzenie);
-		return "redirect:/ZNW";
-	
 	}
-	@RequestMapping("deleteZNW/{ID_Uczestnika}/{ID_Realizacji_Wydarzenia}")
-	public String deleteZapisyNaWydarzenie(@PathVariable(name = "ID_Uczestnika") int id1, @PathVariable(name = "ID_Realizacji_Wydarzenia") int id2) {
-		daoZapisy_na_wydarzenie.delete(id1, id2);
 
-		return "redirect:/ZNW";
+	@RequestMapping("deleteZNW/{ID_Uczestnika}/{ID_Realizacji_Wydarzenia}")
+	public String deleteZapisyNaWydarzenie(@PathVariable(name = "ID_Uczestnika") int id1,
+			@PathVariable(name = "ID_Realizacji_Wydarzenia") int id2) {
+		try {
+			daoZapisy_na_wydarzenie.delete(id1, id2);
+
+			return "redirect:/ZNW";
+		} catch (DataIntegrityViolationException e) {
+			return "redirect:/delErr";
+		}
 	}
 }

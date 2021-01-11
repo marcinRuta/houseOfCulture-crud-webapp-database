@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
+<title>Aplikacja do obsługi Domu Kultury</title>
+</head>
+<body>
+
+	<div align="center">
+
+		<!-- Page header -->
+		<h1>Edytowanie Adresu</h1>
+
+		<!-- End line/new line -->
+
+		<br/>
+
+		<form action="#" th:action="@{/updateA}" th:object="${EditAdresy}"
+			method="post">
+
+			<!-- Table -->
+				<table class="cinereousTable">
+
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" th:field="*{ID_Adresu}"
+						readonly="readonly"></td>
+
+				</tr>
+				<tr>
+					<td>Nazwa Ulicy:</td>
+					<td><input type="text" th:field="*{Ulica}"></td>
+
+				</tr>
+				<tr>
+					<td>Numer domu:</td>
+					<td><input type="text" th:field="*{Nr_Domu}"></td>
+
+				</tr>
+				<tr>
+					<td>Numer mieszkania:</td>
+					<td><input type="text" th:field="*{Nr_mieszkania}"></td>
+
+				</tr>
+				<tr>
+					<td>ID Poczty:</td>
+					<td><input type="text" th:field="*{ID_Poczty}"></td>
+
+				</tr>
+				
+				<!--  Button for save -->
+				<tr>
+				<td colspan="2"><button type="submit">Save</button>
+				</td>
+				</tr>
+
+			</table>
+		</form>
+		<br/>
+				<!-- EXIT -->
+				<a href="/A">Powrót</a>
+	</div>
+
+</body>
+</html>

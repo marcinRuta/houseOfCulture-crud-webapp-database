@@ -1,0 +1,32 @@
+package bdbt_proj;
+
+public class Indifikator {
+	
+	
+	private int temporaryID;
+
+	public Indifikator(int temporaryID) {
+		super();
+		this.temporaryID = temporaryID;
+	}
+
+	public Indifikator() {
+		super();
+	}
+
+	public int getTemporaryID() {
+		return temporaryID;
+	}
+
+	public void setTemporaryID(int temporaryID) {
+		this.temporaryID = temporaryID;
+	}
+
+	@Override
+	public String toString() {
+		return "Indifikator [temporaryID=" + temporaryID + "]";
+	}
+	
+	
+	
+}

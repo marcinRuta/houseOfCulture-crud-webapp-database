@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+<link rel="stylesheet" href="../static/css/tabele.css"
+	th:href="@{/css/tabele.css}">
+</head>
+<body>
+
+	<div align="center">
+	
+		<img src="../static/images/logo.png"
+	th:src="@{/images/logo.png} alt="Girl in a jacket">
+		
+		<!--  Page header  -->
+		<h1>Dom Kultury</h1>
+		<h3>Aplikacja do obsługi Bazy Danych</h3>
+		<br />
+		
+		<a href="/LA">Logowanie na konto Administratora</a>
+
+		<br/>
+		<br/>
+		<br/>
+		
+
+
+		<a href="/LP">Logowanie na konto Pracownika</a>
+	</div>
+
+
+</body>
+</html>
