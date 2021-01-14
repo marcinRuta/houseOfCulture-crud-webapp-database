@@ -191,6 +191,13 @@ public class AppController {
 		model.addAttribute("listPracownicy", listPracownicy);
 		return "pracownicy";
 	}
+	
+	@RequestMapping("/RefreshPNazw")
+	public String viewPracownicyByNazw(Model model) {
+		List<Pracownicy> listPracownicy = daoPracownicy.listSortedByNazw();
+		model.addAttribute("listPracownicy", listPracownicy);
+		return "pracownicy";
+	}
 
 	@RequestMapping("/v/P")
 	public String viewPPracownicy(Model model) {
@@ -330,6 +337,13 @@ public class AppController {
 	@RequestMapping("/WYN")
 	public String viewWynagrodzenia(Model model) {
 		List<Wynagrodzenia> listWynagrodzenia = daoWynagrodzenia.list();
+		model.addAttribute("listWynagrodzenia", listWynagrodzenia);
+		return "wynagrodzenia";
+	}
+	
+	@RequestMapping("/RefreshWynPrac")
+	public String viewWynagrodzeniaSortedByPrac(Model model) {
+		List<Wynagrodzenia> listWynagrodzenia = daoWynagrodzenia.listSortedByPrac();
 		model.addAttribute("listWynagrodzenia", listWynagrodzenia);
 		return "wynagrodzenia";
 	}
@@ -612,6 +626,13 @@ public class AppController {
 	@RequestMapping("/U")
 	public String viewUczestnicy(Model model) {
 		List<Uczestnicy> listUczestnicy = daoUczestnicy.list();
+		model.addAttribute("listUczestnicy", listUczestnicy);
+		return "uczestnicy";
+	}
+	
+	@RequestMapping("/RefreshUNazw")
+	public String viewUczestnicySortedByNazw(Model model) {
+		List<Uczestnicy> listUczestnicy = daoUczestnicy.listSortedByNazw();
 		model.addAttribute("listUczestnicy", listUczestnicy);
 		return "uczestnicy";
 	}

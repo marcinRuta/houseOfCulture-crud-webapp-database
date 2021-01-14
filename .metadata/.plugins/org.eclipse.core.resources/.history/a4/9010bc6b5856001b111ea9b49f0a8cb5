@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Aplikacja do obsługi Domu Kultury</title>
+<link rel="stylesheet" href="../static/css/tabele.css" th:href="@{/css/tabele.css}" >
+</head>
+<body>
+
+	<div align="center">
+		<!--  Page header  -->
+		<h1>Wynagrodzenia zapisane w Domu Kultury</h1>
+		<a href="/newWYN">Dodaj nowe Wynagrodzenia</a>
+		<br/> <br/>
+
+		<!-- Table -->
+	<table class="cinereousTable">
+
+			<!-- Entry to a new page -->
+			
+
+			<!-- Table header -->
+			<thead>
+				<tr>
+					<th>ID Wynagrodzenia</th>
+					<th>Data Wyslania Wynagrodzenia</th>
+					<th>Kwota Wynagrodzenia</th>
+					<th>ID Pracownika</th>
+					<th>Akcja</th>
+				</tr>
+			</thead>
+
+			<!-- Table body-->
+			<tbody>
+				<tr th:each="Wynagrodzenia : ${listWynagrodzenia}">
+					<td th:text="${Wynagrodzenia.ID_Wynagrodzenia}">ID_Wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.Data_Wyslania_Wynagrodzenia}">Data_Wyslania_Wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.Kwota_Wynagrodzenia}">Kwota_Wynagrodzenia</td>
+					<td th:text="${Wynagrodzenia.ID_Pracownika}">ID_Pracownika</td>
+
+					<td><a th:href="@{'/editWYN/' + ${Wynagrodzenia.ID_Wynagrodzenia}}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a th:href="@{'/deleteWYN/' +${Wynagrodzenia.ID_Wynagrodzenia}}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<br/>
+		<a th:href="@{/P}">Posortuj po ID</a> <br/> <br/>
+		<a th:href="@{/RefreshWynPrac}">Posortuj po ID Pracownika</a>
+		<br/>
+		<br/>
+		<!-- EXIT -->
+		<a href="/tables">Powrót</a>
+
+	</div>
+</body>
+</html>

@@ -24,7 +24,15 @@ public class WynagrodzeniaDAO {
 	
 	/* List */
 	public List<Wynagrodzenia> list(){
-		String sql = "SELECT * from Wynagrodzenia";
+		String sql = "SELECT * from Wynagrodzenia ORDER BY ID_Wynagrodzenia";
+		
+		List<Wynagrodzenia> listWynagrodzenia = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Wynagrodzenia.class));
+		return listWynagrodzenia;
+	}
+	
+	public List<Wynagrodzenia> listSortedByPrac(){
+		String sql = "SELECT * from Wynagrodzenia ORDER BY ID_Pracownika";
 		
 		List<Wynagrodzenia> listWynagrodzenia = jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(Wynagrodzenia.class));

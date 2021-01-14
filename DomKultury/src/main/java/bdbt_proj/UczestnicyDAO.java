@@ -24,7 +24,15 @@ public class UczestnicyDAO {
 	
 	/* List */
 	public List<Uczestnicy> list(){
-		String sql = "SELECT * from Uczestnicy";
+		String sql = "SELECT * from Uczestnicy ORDER BY ID_Uczestnika";
+		
+		List<Uczestnicy> listUczestnicy = jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(Uczestnicy.class));
+		return listUczestnicy;
+	}
+	
+	public List<Uczestnicy> listSortedByNazw(){
+		String sql = "SELECT * from Uczestnicy ORDER BY Nazwisko";
 		
 		List<Uczestnicy> listUczestnicy = jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(Uczestnicy.class));
